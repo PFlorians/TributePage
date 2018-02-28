@@ -84,10 +84,11 @@
 .page-header
 {
 	margin: 15px !important;
+	border-bottom: 0px !important;
 }
 .left-padding h3
 {
-	padding-left: 50px;
+	padding-left: 80px;
 }
 .left-padding h4
 {
@@ -96,6 +97,25 @@
 .remove-deco a
 {
 	text-decoration: none;	
+}
+.centrovanie
+{
+	position: relative;
+	text-align: center;
+}
+/*pretazenie vlastnosti tabuliek*/
+table
+{
+	background-color: #f2a9e0 !important;
+	color: black;
+}
+.table-striped > tbody > tr:nth-of-type(2n+1)
+{
+	background-color: #a4d5f5 !important;
+}
+.popover-title
+{
+	color: black !important;
 }
 /*
 @media (max-width: 766px) 

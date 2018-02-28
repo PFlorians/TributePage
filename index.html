@@ -9,9 +9,10 @@
 			
 			<!-- custom JS files -->
 			<script src="js/mechanics.js"></script>
+			<script src="js/utilitary.js"></script>
+			<script src="js/CarouselClass.js"></script>
 	        <script src="js/scripts.js"></script>
-	        <script src="js/utilitary.js"></script>
-	        
+	        	        
 	       	<!-- Latest compiled bootstrap CSS -->
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
 			<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>-->
@@ -35,7 +36,7 @@
        	<!-- rest of head section -->
         <title>Retro Soft</title>
     </head>
-    <body class="bckg" onload="init()"> 
+    <body class="back" onload="init()"> 
 	    	<header class="page-header" id="headr"> <!-- komplet cely header moze byt dynamicky linkovany -->
 	    		<nav class="navbar navbar-inverse navbar-fixed-top bottom-margin" id="hlavicka">
 	    			<div class="navbar-header"><!-- dolezite koli mechanike 3-bar spuste -->
@@ -80,11 +81,13 @@
 		    				</li>
 		    				<li><a href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
 		    			</ul>
-		    			<div id="login-content" class="hide">
-			    			<form class="form-inline" role="form">
-			    				<input type="text"/>
-			    				<input type="password"/>
-			    				<input type="submit" />
+		    			<div id="login-form" class="hide">
+			    			<form class="form-inline">
+			    				<div class="form-group">
+				    				<input type="text" class="form-control" maxlength ="4" placeholder="username"/>
+				    				<input type="password" class="form-control" maxlength="4" placeholder="password"/><br/>
+				    				<button type="submit" class="btn btn-primary">Submit</button>
+			    				</div>
 			    			</form>
 		    			</div>
 	    			</div>
@@ -97,7 +100,7 @@
 	    	<!--<main> -->
 	    	
 	    	<div class="row"><!-- carousel -->
-	    		<div id="carus" class="carousel slide col-lg-8 col-md-8 col-sm-8 col-xs-10" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000> 
+	    		<div id="carus" class="carousel slide col-lg-8 col-md-8 col-sm-8 col-xs-12" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000> 
 					<!-- indikatory -->
 					<ol class="carousel-indicators">
 						<li data-target="#carus" data-slide-to="0" class="active"></li>
@@ -131,7 +134,7 @@
 					</a>
 	    		</div>
 	    		<div id="briefInfo" class="table-responsive col-sm-4 col-xs-2">
-	    			<table id="contentInfo" class="table table-bordered table-hover table-striped">
+	    			<table id="contentInfo" class="table table-bordered table-striped">
 	    				<!-- <thead>
 	    					<th class="info">
 	    						Parameter
@@ -146,11 +149,13 @@
 	    			</table>
 	    		</div>
 	    	</div>
-	    	<h2 class="arcade-font">Articles</h2>
+	    	<h2 class="arcade-font centrovanie">Articles</h2>
 	    	<article>
-	    		<h3 class="beon left-padding"><a class="remove-deco" href="html/prince.html">Prince of Persia</a></h3>
+	    		<h3 class="left-padding remove-deco"><a class="beon" href="html/prince.html">Prince of Persia</a></h3>
 	    		<div class="row">
-	    			<img class="col-lg-5 col-md-5 col-sm-8 col-xs-10" src="img/ptimce0.PNG" alt="prince"/>
+	    			<a href="html/prince.html">
+	    				<img class="col-lg-5 col-md-5 col-sm-8 col-xs-10" src="img/ptimce0.PNG" alt="prince"/>
+	    			</a>
 	    			<p>
 		    			 Prince of Persia is a fantasy platform game, originally developed by Jordan Mechner and released in 1989 
 		    			 for the Apple II, that represented a great leap forward in the quality of animation seen in video games. 
@@ -169,21 +174,26 @@
 		    			 of a magic mirror.
 	    			</p>
 	    		</div>
-	    		
-			    <!--<div>
-			    		
-			    </div>
-		    	<div>
-			        <div class="btn-group btn-group-justified">-->
-			        	<!-- justified cannot be used with button only <a> -->
-			    		<!--<a href="#" class="btn btn-primary">txt</a>
-			    		<a href="#" class="btn btn-primary">txt2</a>
-			    		<a href="#" class="btn btn-primary">txt3</a>
-			        </div>
-			        	<button class="btn btn-primary" onclick="tstReq()">click</button>
-		        </div>-->
 	        </article>
 	        <hr/>
+	        <article>
+	    		<h3 class="left-padding remove-deco"><a class="beon" href="html/amiga.html">Amiga OS</a></h3>
+	    		<div class="row">
+	    			<a href="html/amiga.html">
+	    				<img class="col-lg-5 col-md-5 col-sm-8 col-xs-10" src="img/amiga0.png" alt="amiga_os"/>
+	    			</a>
+	    			<p>
+		    			AmigaOS is a family of proprietary native operating systems of the Amiga and AmigaOne personal computers. 
+		    			It was developed first by Commodore International and introduced with the launch of the first Amiga, the 
+		    			Amiga 1000, in 1985. Early versions of AmigaOS required the Motorola 68000 series of 16-bit and 32-bit 
+		    			microprocessors. Later versions were developed by Haage and Partner (AmigaOS 3.5 and 3.9) and then Hyperion 
+		    			Entertainment (AmigaOS 4.0-4.1). A PowerPC microprocessor is required for the most recent release, AmigaOS 4.
+						AmigaOS is a single-user operating system based on a preemptive multitasking kernel, called Exec. It 
+						includes an abstraction of the Amiga's hardware, a disk operating system called AmigaDOS, a windowing 
+						system API called Intuition and a desktop file manager called Workbench.
+	    			</p>
+	    		</div>
+	        </article>
 	        <!--<div>
 	        	<div id="cons-title" class="cons-title">
 	        		<p>Console</p>

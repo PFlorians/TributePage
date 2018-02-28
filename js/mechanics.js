@@ -8,10 +8,10 @@ $(document).ready(
     	//$("div > ul[name*=list1] > li[name*=monstro][id*=bannerlord]").css("color", "#00f7f7");
     	//console.log("width: " + $(window).width() + " height: " + $(window).height());
 		$("[data-toggle=popover]").popover({
-			html: true;
+			html: true,
 			content: function()
 			{
-				
+				return $("#login-form").html();
 			}
 		});
     	$("#login").popover();

@@ -8,10 +8,11 @@
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 			
 			<!-- custom JS files -->
-			<script src="js/mechanics.js"></script>
-	        <script src="js/scripts.js"></script>
-	        <script src="js/utilitary.js"></script>
-	        
+			<script src="../js/mechanics.js"></script>
+			<script src="../js/utilitary.js"></script>
+			<script src="../js/CarouselClass.js"></script>
+	        <script src="../js/scripts.js"></script>
+	        	        
 	       	<!-- Latest compiled bootstrap CSS -->
 			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
 			<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>-->
@@ -20,8 +21,8 @@
 			<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>-->
 		
 			<!-- custom css -->
-	       	<link rel="stylesheet" href="css/frickles.css"/>
-	       	<link rel="stylesheet" href="css/heavy.css"/>
+	       	<link rel="stylesheet" href="../css/frickles.css"/>
+	       	<link rel="stylesheet" href="../css/heavy.css"/>
 		
 		<!-- configuration and misc references -->
 			
@@ -35,7 +36,7 @@
        	<!-- rest of head section -->
         <title>Prince of Persia</title>
     </head>
-	<body onload="init()" class="bckg">
+	<body onload="init()" class="back">
 		<header class="page-header" id="headr"> <!-- komplet cely header moze byt dynamicky linkovany -->
 	    		<nav class="navbar navbar-inverse navbar-fixed-top bottom-margin" id="hlavicka">
 	    			<div class="navbar-header"><!-- dolezite koli mechanike 3-bar spuste -->
@@ -46,7 +47,7 @@
 	    				</button>
 	    				<!--<section class="vertical-separator-right">-->
 	    				<a class="navbar-left" > 
-	    					<object type="image/svg+xml" data="img/floppy.svg" id="logo">
+	    					<object type="image/svg+xml" data="../img/floppy.svg" id="logo">
 	    						Objects not supported in your browser	
 	    					</object>
 	    				</a>
@@ -54,7 +55,7 @@
 	    			</div>
 	    			<div class="collapse navbar-collapse " id="mainNav">
 		    			<ul class="nav navbar-nav arcade-font"> 
-		    				<li class="vertical-separator-left"><a href="index.html">Home</a></li>	
+		    				<li class="vertical-separator-left"><a href="../index.html">Home</a></li>	
 		    				<li ><a href="#">About</a></li>
 		    				<li ><a href="#">Software</a></li>
 		    				<li ><a href="#">Games</a></li>
@@ -81,7 +82,7 @@
 		    				<li><a href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
 		    			</ul>
 		    			<div id="login-content" class="hide">
-			    			<form class="form-inline" role="form">
+			    			<form class="form-inline">
 			    				<input type="text"/>
 			    				<input type="password"/>
 			    				<input type="submit" />
@@ -94,12 +95,12 @@
 	    			</div>
 	    		</nav>
 	    	</header>
-	    	<article>
-	    		<h3 class="beon left-padding">Prince of Persia</h3>
-	    		<section class="row"> 
+	    	<article class="container-fluid">
+	    		<h3 class="beon centrovanie">Prince of Persia</h3>
+	    		<div class="row"> 
 	    			<!-- prince carousel -->
 	    			<!-- carousel -->
-		    		<div id="carusPrince" class="carousel slide col-lg-5 col-md-5 col-sm-8 col-xs-10" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000> 
+		    		<div id="carusPrince" class="carousel slide col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000> 
 						<!-- indikatory -->
 						<ol class="carousel-indicators">
 							<li data-target="#carus" data-slide-to="0" class="active"></li>
@@ -109,17 +110,17 @@
 						</ol>
 						<!-- data items -->
 						<div class="carousel-inner" role="listbox" id="imgsCar">
-							<div class="item active" style="background-image: url(img/ptimce0.PNG);">
-								<img src="img/ptimce0.PNG" alt="prince0"/>
+							<div class="item active" style="background-image: url(../img/ptimce0.PNG);">
+								<img src="../img/ptimce0.PNG" alt="prince0"/>
 							</div>
-							<div class="item" style="background-image: url(img/prince.PNG);">
-								<img src="img/prince.PNG" alt="prince"/>
+							<div class="item" style="background-image: url(../img/prince.PNG);">
+								<img src="../img/prince.PNG" alt="prince"/>
 							</div>
-							<div class="item" style="background-image: url(img/prince1.PNG);">
-								<img  src="img/prince1.PNG" alt="prince1"/>
+							<div class="item" style="background-image: url(../img/prince1.PNG);">
+								<img  src="../img/prince1.PNG" alt="prince1"/>
 							</div>
-							<div class="item" style="background-image: url(img/prince2.png);">
-								<img  src="img/prince2.PNG" alt="prince2"/>
+							<div class="item" style="background-image: url(../img/prince2.png);">
+								<img  src="../img/prince2.PNG" alt="prince2"/>
 							</div>
 						</div>
 						<!-- ovladace -->
@@ -132,7 +133,7 @@
 							<span class="sr-only">Next</span>
 						</a>
 		    		</div>
-	    		</section>
+	    		</div>
 	    		<section> <!--text -->
 	    			<h4 class="beon-neon left-padding">Plot</h4>
 	    			<p>

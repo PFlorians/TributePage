@@ -1,8 +1,10 @@
-body
+.back
 {
-	background-image: url(../img/sunse.svg);
+	background-image: url(../img/sunset_2.svg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	z-index: -1
+	z-index: -1;
+	color: #b1f36b;
+	font-size: 14pt;
 }
