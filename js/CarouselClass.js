@@ -12,8 +12,8 @@ class CarouselClass
 	{
 		this._styl = null;
 		//console.log("vysk sirk: " + vyska + " " + sirka);
-		if(sirka>=768)
-		{
+		//if(sirka>=768)
+	//	{
 			//console.log("trigger detected");
 			this._styl=document.createElement("style");
 			this._styl.setAttribute("id", "styleCarusResp");
@@ -22,7 +22,8 @@ class CarouselClass
 							".item {background-size: cover; background-position: 50% 50%;" +
 						      " width: 100%; height: 100%;}" +
 							".item img { visibility: hidden;}";		
-		}
+		//}
+		
 		return this._styl;
 	}
 	carusResponsive()//zaisti logiku za responzivitou

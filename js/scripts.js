@@ -3,17 +3,8 @@
  */
 //current carousel index - index at which carousel starts
 var cur=0;
-function tstReq()
-{
-	console.log("activated");
-	var connector = new XMLHttpRequest();
-	connector.onreadystatechange=responseListener(connector);
-	
-	connector.open("GET", "http://www.aktuality.sk/index.html");
-	connector.send();
-	
-	document.getElementById("garbage").textContent=connector.responseText;
-}
+var clickFlag=false;
+
 function responseListener(con)
 {
 	console.log("response " + con);
@@ -32,86 +23,83 @@ function responseListener(con)
 //logika progress baru
 function progressBarMeasurement()
 {
+	let viewableW=window.innerWidth;//viditelne okno
+	let viewableH=window.innerHeight;
 	
+}
+function navbarOverflowCheck()
+{
+	console.log("overflow: " + $("#hlavicka").height() + " w: " + $("#hlavicka").width());
+	console.log("overflow2: " + $("#nhead").height() + " w: " + $("#nhead").width());
+	if(($("#hlavicka").width() <= 768 && $("#hlavicka").height()>68)
+		|| ($("#nhead").width() <= 768 && $("#nhead").height()>68))
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 }
 //specialne pravidla nerobit cez @media
 function adjustPadding()
 {
+	console.log("debug: " + $("#mainNav").height() + " " + $("#mainNav").width());
+	console.log("window debug: " + window.innerHeight + " " + window.innerWidth);
 	if(window.innerWidth <=200)
     {
+    	console.log("the special case " + $("#mainNav").height());
     	$("body").css("padding-top", 24);
     }
     else if(window.innerWidth >=768 || (window.innerWidth <= 768 && window.innerHeight >200))
     {
-    	if($("#mainNav").height() <= 50)
-     	{
-     		$("body").css("padding-top", 23);//11, korekcia o 12px
-     	}
-     	else if($("#mainNav").height() <= 100 && $("#mainNav").height() >= 50)
-     	{
-     		$("body").css("padding-top", 73);	
-     	}
-     	else
-     	{
-     		console.log("the special case");
-     		$("body").css("padding-top", 27);
-     	}
+    	//eventDispatcher(window);
+    	if(navbarOverflowCheck() == 1)
+    	{
+    		$("#hlavicka").css("max-height", 68);
+    		$("#nhead").css("max-height", 60);
+    		heurSpLo();	
+    	}
+    	else
+    	{
+    		console.log("zvacseny");
+    		$("#hlavicka").css("max-height", '');
+    		$("#nhead").css("max-height", '');
+    		heurLo();
+	    }
+	    if($("#mainNav").height() <= 50)
+	    {
+	    	$("body").css("padding-top", 23);//11, korekcia o 12px
+	    }
+	    else if($("#mainNav").height() <= 100 && $("#mainNav").height() >= 50)
+	    {
+	    	$("body").css("padding-top", 73);	
+	    }
+	    else
+	    {
+	    	$("body").css("padding-top", 27);
+	    }
 	}
+	
 }
-function logoHeuristics()//nech sirka je 11% sirky stranky, nech vyska je 80% 
+function temporaryEraseConditions()
 {
-	$("#logo").css("height", 0);
-	$("#logo").css("width", 0);
-	var w=($("#mainNav").width()/100)*11;
-	var h=($("#mainNav").height()/100)*80;
-	//console.log("vypocital som: " + w + " h: " + h);
-	$("#logo").css("height", h);
-	$("#logo").css("width", w);
+	console.log("click: " + clickFlag);
+	if(clickFlag==false)
+	{
+		clickFlag=true;
+		$("#hlavicka").css("max-height", '');
+    	$("#nhead").css("max-height", '');
+    	heurSpLo();
+    }
+    else
+    {
+    	clickFlag=false;
+    	$("#hlavicka").css("max-height", 68);
+    	$("#nhead").css("max-height", 60);
+    	heurSpLo();	
+    }
 }
-/*
-//define style
-function styleDecisionCascade(sirka, vyska)
-{
-	var styl = null;
-	console.log("vysk sirk: " + vyska + " " + sirka);
-	if(sirka>=768)
-	{
-		styl=document.createElement("style");
-		styl.setAttribute("id", "styleCarusResp");
-		styl.innerHTML =  " .carousel { height: " + vyska + "px;}" +
-						" .carousel-inner {height: 100%;}" + 
-						".item {background-size: cover; background-position: 50% 50%; " +
-					      " width: 100%; height: 100%;}" +
-						".item img { visibility: hidden;}";		
-	}
-	return styl;
-}*/
-//service routine for responsive carousel
-/*function carusResponsive(ht=60, wt=60)
-{
-	var w = (window.innerWidth/100)*wt;
-	var h = (window.innerHeight/100)*ht;
-	var stylehseet = null;
-	if(document.getElementById("styleCarusResp") == null)
-	{
-		stylesheet = styleDecisionCascade(w, h);
-		if(stylesheet != null)
-		{
-			document.body.appendChild(stylesheet);
-		}
-	}
-	else
-	{
-		stylesheet = document.getElementById("styleCarusResp");
-		stylesheet.parentNode.removeChild(stylesheet);
-		stylesheet = styleDecisionCascade(w, h);
-		if(stylehseet!=null)
-		{
-			document.body.appendChild(stylesheet);
-		}
-	}
-	//console.log("styl: " + stylesheet.getAttribute("id"));
-}*/
 function removeChildren(elem)
 {
 	if(elem!=null)
@@ -426,24 +414,78 @@ function carusSlide()
 			//console.log("index: " + cur );
 		});
 }
+function basicIntel()
+{
+	console.log($(window.top).height());
+	console.log(window.innerHeight);
+	console.log($(window).height());
+	console.log("velkost dokumetnu");
+	console.log("1 " +document.body.scrollHeight);
+	console.log("2 " +document.body.offsetHeight);
+	console.log("3 " +document.documentElement.clientHeight);
+	console.log("4 " +document.documentElement.scrollHeight);
+	console.log("5 " +document.documentElement.offsetHeight);
+	console.log("info o navbare");
+	console.log("hlavicka: " + $("#hlavicka").height() + " sirka: " + $("#hlavicka").width());
+	console.log("nhead div: " + $("#nhead").height() + " " + $("#nhead").width());
+	console.log("mainNav: " + $("#mainNav").height());
+	console.log("mainNav w: " + $("#mainNav").width());
+}
+function heurLo()
+{
+	$("#logo").css("height", 0);
+	$("#logo").css("width", 0);
+	$("#layer1").css("height", 0);
+	$("#layer1").css("width", 0);
+	$("#layer2").css("height", 0);
+	$("#layer2").css("width", 0);
+	var w=($("#hlavicka").width()/100)*11;
+	var h=($("#hlavicka").height()/100)*80;
+	console.log("vypocital som: " + w + " h: " + h);
+	$("#layer1").css("height", h);
+	$("#layer1").css("width", w);
+	$("#layer2").css("height", h);
+	$("#layer2").css("width", w);
+	$("#logo").css("height", h);
+	$("#logo").css("width", w);
+}
+function heurSpLo()
+{
+	$("#logo").css("height", 0);
+	$("#logo").css("width", 0);
+	$("#layer1").css("height", 0);
+	$("#layer1").css("width", 0);
+	$("#layer2").css("height", 0);
+	$("#layer2").css("width", 0);
+	var w=($("#nhead").width()/100)*11;
+	var h=($("#nhead").height()/100)*80;
+	//console.log("vypocital som: " + w + " h: " + h);
+	$("#layer1").css("height", h);
+	$("#layer1").css("width", w);
+	$("#layer2").css("height", h);
+	$("#layer2").css("width", w);
+	$("#logo").css("height", h);
+	$("#logo").css("width", w);
+}
+
 function init()
 {
+	var curtime, tout;
+	var lock=false;
 	let car=new CarouselClass(60, 70);
 	//init onload sequence
-	logoHeuristics();
+	//basicIntel();
+	//logoHeuristics();
+	heurLo();	
 	car.carusResponsive();
-	//carusResponsive();
 	carusSlide();
 	adjustPadding();
 	eventDispatcher(window);
-    window.addEventListener('resize', function f()
+    window.addEventListener('resize', function f()//pozor na vnorene volania
     {
     	adjustPadding();
-    	car.carusResponsive();
-    	//carusResponsive();
-    	//logoHeuristics();
-    	//console.log("status " + window.innerWidth + " " + $("#mainNav").height());
-    	//console.log("padding " + $("#progress").position().top);
+		car.carusResponsive();
+		setTimeout(() => {adjustPadding(); car.carusResponsive()}, 200);//pretoze firefox aj chrom neustale spustaju event resize
     });
 }
 function initArticles()
