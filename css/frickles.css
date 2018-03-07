@@ -52,10 +52,26 @@
 	font-family: 'PressStart2PRegular';
 	color: #f7a009 !important;
 }
+.arcade-font-prince
+{
+	font-family: 'PressStart2PRegular';
+	color: /*#ffebaa*/#e3a200 !important;
+}
 .beon
 {
 	font-family: 'BeonRegular'; 
 	color: #ff00c7 !important;
+}
+h3.beon.centrovanie /* formatovanie pre nadpisy */
+{
+	font-size: 40pt !important;
+	margin-bottom: 30px !important;
+}
+h3.arcade-font-prince.centrovanie /* formatovanie pre nadpisy */
+{
+	font-size: 30pt !important;
+	padding: 0px !important;
+	margin-bottom: 40px !important;
 }
 .beon-neon
 {
@@ -83,7 +99,7 @@
 }
 .page-header
 {
-	margin: 15px !important;
+	margin: 0px !important;
 	border-bottom: 0px !important;
 }
 .left-padding h3

@@ -29,8 +29,8 @@ function progressBarMeasurement()
 }
 function navbarOverflowCheck()
 {
-	console.log("overflow: " + $("#hlavicka").height() + " w: " + $("#hlavicka").width());
-	console.log("overflow2: " + $("#nhead").height() + " w: " + $("#nhead").width());
+	//console.log("overflow: " + $("#hlavicka").height() + " w: " + $("#hlavicka").width());
+	//console.log("overflow2: " + $("#nhead").height() + " w: " + $("#nhead").width());
 	if(($("#hlavicka").width() <= 768 && $("#hlavicka").height()>68)
 		|| ($("#nhead").width() <= 768 && $("#nhead").height()>68))
 	{
@@ -44,14 +44,14 @@ function navbarOverflowCheck()
 //specialne pravidla nerobit cez @media
 function adjustPadding()
 {
-	console.log("debug: " + $("#mainNav").height() + " " + $("#mainNav").width());
+	//console.log("debug: " + $("#mainNav").height() + " " + $("#mainNav").width());
 	console.log("window debug: " + window.innerHeight + " " + window.innerWidth);
 	if(window.innerWidth <=200)
     {
-    	console.log("the special case " + $("#mainNav").height());
+    	//console.log("the special case " + $("#mainNav").height());
     	$("body").css("padding-top", 24);
     }
-    else if(window.innerWidth >=768 || (window.innerWidth <= 768 && window.innerHeight >200))
+    else //if(window.innerWidth >=768 || (window.innerWidth <= 768 && window.innerHeight >200))//stara verzia
     {
     	//eventDispatcher(window);
     	if(navbarOverflowCheck() == 1)
@@ -62,11 +62,20 @@ function adjustPadding()
     	}
     	else
     	{
-    		console.log("zvacseny");
+    		//console.log("zvacseny");
     		$("#hlavicka").css("max-height", '');
     		$("#nhead").css("max-height", '');
     		heurLo();
 	    }
+	    if(window.innerWidth<=1195)//len custom bootstrap
+	    {
+	    	$("body").css("padding-top", 70);
+	    }
+	    else
+	    {
+	    	$("body").css("padding-top", 80);
+	    }
+	    /*//stara verzia
 	    if($("#mainNav").height() <= 50)
 	    {
 	    	$("body").css("padding-top", 23);//11, korekcia o 12px
@@ -78,13 +87,13 @@ function adjustPadding()
 	    else
 	    {
 	    	$("body").css("padding-top", 27);
-	    }
+	    }*/
 	}
 	
 }
 function temporaryEraseConditions()
 {
-	console.log("click: " + clickFlag);
+	//console.log("click: " + clickFlag);
 	if(clickFlag==false)
 	{
 		clickFlag=true;
@@ -431,7 +440,7 @@ function basicIntel()
 	console.log("mainNav: " + $("#mainNav").height());
 	console.log("mainNav w: " + $("#mainNav").width());
 }
-function heurLo()
+function heurLo()//heuristika podla kontajnera hlavicka
 {
 	$("#logo").css("height", 0);
 	$("#logo").css("width", 0);
@@ -449,7 +458,7 @@ function heurLo()
 	$("#logo").css("height", h);
 	$("#logo").css("width", w);
 }
-function heurSpLo()
+function heurSpLo()//specialny pripad, nhead kontajner
 {
 	$("#logo").css("height", 0);
 	$("#logo").css("width", 0);
@@ -490,15 +499,18 @@ function init()
 }
 function initArticles()
 {
-	//init onload sequence
-	logoHeuristics();
+	var curtime, tout;
+	var lock=false;
+	let car=new CarouselClass(60, 70);
+	
+	heurLo();	
+	car.carusResponsive();
 	adjustPadding();
 	eventDispatcher(window);
-    window.addEventListener('resize', function f()
+    window.addEventListener('resize', function f()//pozor na vnorene volania
     {
     	adjustPadding();
-    	//logoHeuristics();
-    	//console.log("status " + window.innerWidth + " " + $("#mainNav").height());
-    	//console.log("padding " + $("#progress").position().top);
+		car.carusResponsive();
+		setTimeout(() => {adjustPadding(); car.carusResponsive()}, 200);
     });
 }

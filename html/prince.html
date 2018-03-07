@@ -13,12 +13,10 @@
 			<script src="../js/CarouselClass.js"></script>
 	        <script src="../js/scripts.js"></script>
 	        	        
-	       	<!-- Latest compiled bootstrap CSS -->
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-			<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>-->
-			<!-- Latest compiled bootstrap JavaScript -->
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-			<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>-->
+	       	<!-- vlastny skompilovany bootstrap -->
+			<link rel="stylesheet" href="../css/bootstrap3.3.7_v2/css/bootstrap.min.css"/>
+			<!-- vlastny JS zo skompilovaneho bootstrapu -->
+			<script src="../css/bootstrap3.3.7_v2/js/bootstrap.min.js"></script> 
 		
 			<!-- custom css -->
 	       	<link rel="stylesheet" href="../css/frickles.css"/>
@@ -26,7 +24,7 @@
 		
 		<!-- configuration and misc references -->
 			
-			<!-- follow device width, initial zoom level -->
+			<!-- follow device width, initial zoom level let be default -->
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!-- fonts defined here-->
 	 		<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/hi" type="text/css"/> 
@@ -36,10 +34,10 @@
        	<!-- rest of head section -->
         <title>Prince of Persia</title>
     </head>
-	<body onload="init()" class="back">
+	<body onload="initArticles()" class="back">
 		<header class="page-header" id="headr"> <!-- komplet cely header moze byt dynamicky linkovany -->
 	    		<nav class="navbar navbar-inverse navbar-fixed-top bottom-margin" id="hlavicka">
-	    			<div class="navbar-header"><!-- dolezite koli mechanike 3-bar spuste -->
+	    			<div id="nhead" class="navbar-header"><!-- dolezite koli mechanike 3-bar spuste -->
 	    				<button class="navbar-toggle pull-left aux-navbar-left" onclick="temporaryEraseConditions()" data-toggle="collapse" data-target="#mainNav" id="bars">
 		    				<span class="icon-bar"></span>
 		    				<span class="icon-bar"></span>
@@ -95,18 +93,19 @@
 	    			</div>
 	    		</nav>
 	    	</header>
+	    	
 	    	<article class="container-fluid">
-	    		<h3 class="beon centrovanie">Prince of Persia</h3>
+	    		<h3 class="arcade-font-prince centrovanie">Prince of Persia</h3>
 	    		<div class="row"> 
 	    			<!-- prince carousel -->
 	    			<!-- carousel -->
 		    		<div id="carusPrince" class="carousel slide col-lg-12 col-md-12 col-sm-12 col-xs-12" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000> 
 						<!-- indikatory -->
 						<ol class="carousel-indicators">
-							<li data-target="#carus" data-slide-to="0" class="active"></li>
-							<li data-target="#carus" data-slide-to="1" ></li>
-							<li data-target="#carus" data-slide-to="2" ></li>
-							<li data-target="#carus" data-slide-to="3" ></li>
+							<li data-target="#carusPrince" data-slide-to="0" class="active"></li>
+							<li data-target="#carusPrince" data-slide-to="1" ></li>
+							<li data-target="#carusPrince" data-slide-to="2" ></li>
+							<li data-target="#carusPrince" data-slide-to="3" ></li>
 						</ol>
 						<!-- data items -->
 						<div class="carousel-inner" role="listbox" id="imgsCar">
@@ -124,11 +123,11 @@
 							</div>
 						</div>
 						<!-- ovladace -->
-						<a class="left carousel-control" href="#carus" role="button" data-slide="prev">
+						<a class="left carousel-control" href="#carusPrince" role="button" data-slide="prev">
 							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 							<span class="sr-only">Previous</span>
 						</a>
-						<a class="right carousel-control" href="#carus" role="button" data-slide="next">
+						<a class="right carousel-control" href="#carusPrince" role="button" data-slide="next">
 							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 							<span class="sr-only">Next</span>
 						</a>
