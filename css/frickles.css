@@ -1,3 +1,4 @@
+/*dekorativne separatory*/
 .vertical-separator-right
 {
 	border-right-width: 1px;
@@ -10,6 +11,7 @@
 	border-left-style: solid;
 	border-left-color: #EF00D8;
 }
+/*box model helpers*/
 .aux-navbar-left
 {
 	float: left;
@@ -19,6 +21,7 @@
 {
 	margin-bottom: 3px !important;
 }
+/*progressbar*/
 .thin-progressbar
 {
 	height: 3px !important;
@@ -36,12 +39,14 @@
 {
 	width: 60%;
 }
+/*navbar styling*/
 .navbar-brand
 {
 	font-family: 'HiRegular';
 	color: #16EF00 !important;
 	/*pretazi povodnu definiciu -> opatrne!*/
 }
+/*fonty*/
 .neon-retro-font
 {
 	font-family: 'HiRegular';
@@ -78,6 +83,11 @@ h3.arcade-font-prince.centrovanie /* formatovanie pre nadpisy */
 	font-family: 'BeonRegular'; 
 	color: #2bef00 !important;
 }
+h4.beon-neon/*nadpisy 4 urovne*/
+{
+	font-size: 20pt;
+}
+/*koniec fontovy tried*/
 .console
 {
 	position: fixed;
@@ -110,6 +120,7 @@ h3.arcade-font-prince.centrovanie /* formatovanie pre nadpisy */
 {
 	float: center;
 }
+/*general utillitary classes*/
 .remove-deco a
 {
 	text-decoration: none;	
@@ -132,6 +143,38 @@ table
 .popover-title
 {
 	color: black !important;
+}
+/*paticka*/
+footer > p
+{
+	font-size: 12pt !important;
+}
+/*
+ *obrazky pre rolovaci zoznam 
+ */
+ul.dropdown-menu > li > span > img
+{
+	max-height: 20px;
+	max-width: 20px;
+	margin-right: 5px;
+	margin-left: 5px;
+	/*background-image: url("../img/references.png");*/
+}
+/*drobne dekoracie a upravy*/
+li.localHeader p:first-of-type
+{
+	font-weight: bold;
+}
+.vlavo
+{
+	float: left;
+	color: rgb(242, 169, 224);
+	margin-right: 15px;
+}
+ul.vlavo > li > p
+{
+	display: inline;
+	background-color: rgba(0,0,0,.15);
 }
 /*
 @media (max-width: 766px) 

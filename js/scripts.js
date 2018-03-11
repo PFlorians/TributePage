@@ -15,7 +15,6 @@ function responseListener(con)
 	}
 	else
 	{
-		console.log("buggy info :");
 		console.log(con.status);
 		console.log(con.readyState);
 	}
@@ -25,7 +24,17 @@ function progressBarMeasurement()
 {
 	let viewableW=window.innerWidth;//viditelne okno
 	let viewableH=window.innerHeight;
-	
+	let pb=document.getElementById("progress").children[0];
+	let scrl=getScrollSize();
+	//console.log("scrollSiz: " + scrl + " dockel " + document.documentElement.scrollTop);
+	pb.setAttribute("aria-valuenow", (((document.documentElement.scrollTop + viewableH)/scrl)*100));
+	pb.style.width=(((document.documentElement.scrollTop + viewableH)/scrl)*100) + "%";
+}
+function getScrollSize()
+{
+	let doc=document.documentElement;
+	let bod=document.body;
+	return Math.max(doc.clientHeight, doc.scrollHeight, doc.offsetHeight, bod.scrollHeight, bod.offsetHeight);
 }
 function navbarOverflowCheck()
 {
@@ -45,7 +54,7 @@ function navbarOverflowCheck()
 function adjustPadding()
 {
 	//console.log("debug: " + $("#mainNav").height() + " " + $("#mainNav").width());
-	console.log("window debug: " + window.innerHeight + " " + window.innerWidth);
+	//console.log("window debug: " + window.innerHeight + " " + window.innerWidth);
 	if(window.innerWidth <=200)
     {
     	//console.log("the special case " + $("#mainNav").height());
@@ -53,7 +62,6 @@ function adjustPadding()
     }
     else //if(window.innerWidth >=768 || (window.innerWidth <= 768 && window.innerHeight >200))//stara verzia
     {
-    	//eventDispatcher(window);
     	if(navbarOverflowCheck() == 1)
     	{
     		$("#hlavicka").css("max-height", 68);
@@ -75,19 +83,6 @@ function adjustPadding()
 	    {
 	    	$("body").css("padding-top", 80);
 	    }
-	    /*//stara verzia
-	    if($("#mainNav").height() <= 50)
-	    {
-	    	$("body").css("padding-top", 23);//11, korekcia o 12px
-	    }
-	    else if($("#mainNav").height() <= 100 && $("#mainNav").height() >= 50)
-	    {
-	    	$("body").css("padding-top", 73);	
-	    }
-	    else
-	    {
-	    	$("body").css("padding-top", 27);
-	    }*/
 	}
 	
 }
@@ -466,8 +461,8 @@ function heurSpLo()//specialny pripad, nhead kontajner
 	$("#layer1").css("width", 0);
 	$("#layer2").css("height", 0);
 	$("#layer2").css("width", 0);
-	var w=($("#nhead").width()/100)*11;
-	var h=($("#nhead").height()/100)*80;
+	var w=($("#nhead").width()/100)*40;
+	var h=($("#nhead").height()/100)*90;
 	//console.log("vypocital som: " + w + " h: " + h);
 	$("#layer1").css("height", h);
 	$("#layer1").css("width", w);
@@ -489,12 +484,18 @@ function init()
 	car.carusResponsive();
 	carusSlide();
 	adjustPadding();
+	progressBarMeasurement();
 	eventDispatcher(window);
     window.addEventListener('resize', function f()//pozor na vnorene volania
     {
     	adjustPadding();
 		car.carusResponsive();
+		progressBarMeasurement();
 		setTimeout(() => {adjustPadding(); car.carusResponsive()}, 200);//pretoze firefox aj chrom neustale spustaju event resize
+    });
+    window.addEventListener('scroll', () => 
+    {
+    	progressBarMeasurement();
     });
 }
 function initArticles()
@@ -506,11 +507,17 @@ function initArticles()
 	heurLo();	
 	car.carusResponsive();
 	adjustPadding();
+	progressBarMeasurement();
 	eventDispatcher(window);
     window.addEventListener('resize', function f()//pozor na vnorene volania
     {
     	adjustPadding();
 		car.carusResponsive();
+		progressBarMeasurement();
 		setTimeout(() => {adjustPadding(); car.carusResponsive()}, 200);
+    });
+   	window.addEventListener('scroll', () => 
+    {
+    	progressBarMeasurement();
     });
 }
