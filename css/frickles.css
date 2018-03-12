@@ -177,6 +177,14 @@ ul.vlavo > li > p
 	background-color: rgba(0,0,0,.15);
 }
 /*
+ * pozadie za elementom - ak treba zvyraznit text
+ */
+.hilight
+{
+	display: inline;
+	background-color: rgba(0,0,0,.3);
+}
+/*
 @media (max-width: 766px) 
 {
 	body

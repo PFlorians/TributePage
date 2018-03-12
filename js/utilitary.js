@@ -14,10 +14,16 @@ function removeChildren(elem)
 	}
 }
 //event dispatcher
-function eventDispatcher(obj)
+function eventDispatcher(obj)//vysli event resize
 {
 	if(Object.is(window, obj))
 	{
 		obj.dispatchEvent(new Event("resize"));		
 	}
+}
+function getScrollSize()//velkost plochy, kt. zabera dokument
+{
+	let doc=document.documentElement;
+	let bod=document.body;
+	return Math.max(doc.clientHeight, doc.scrollHeight, doc.offsetHeight, bod.scrollHeight, bod.offsetHeight);
 }

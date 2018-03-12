@@ -5,22 +5,8 @@
 var cur=0;
 var clickFlag=false;
 
-function responseListener(con)
-{
-	console.log("response " + con);
-	if(con.readyState == 4 && con.status==200)
-	{
-		console.log("response detected");
-		console.log(con.responseText);
-	}
-	else
-	{
-		console.log(con.status);
-		console.log(con.readyState);
-	}
-}
 //logika progress baru
-function progressBarMeasurement()
+function progressBarMeasurement()//pre progress bar
 {
 	let viewableW=window.innerWidth;//viditelne okno
 	let viewableH=window.innerHeight;
@@ -30,12 +16,7 @@ function progressBarMeasurement()
 	pb.setAttribute("aria-valuenow", (((document.documentElement.scrollTop + viewableH)/scrl)*100));
 	pb.style.width=(((document.documentElement.scrollTop + viewableH)/scrl)*100) + "%";
 }
-function getScrollSize()
-{
-	let doc=document.documentElement;
-	let bod=document.body;
-	return Math.max(doc.clientHeight, doc.scrollHeight, doc.offsetHeight, bod.scrollHeight, bod.offsetHeight);
-}
+
 function navbarOverflowCheck()
 {
 	//console.log("overflow: " + $("#hlavicka").height() + " w: " + $("#hlavicka").width());
@@ -104,16 +85,7 @@ function temporaryEraseConditions()
     	heurSpLo();	
     }
 }
-function removeChildren(elem)
-{
-	if(elem!=null)
-	{
-		while(elem.firstChild)
-		{
-			elem.removeChild(elem.firstChild);
-		}
-	}
-}
+
 function briefContent(ind)//nahadzuje content podla indexu carouselu
 {
 	var tab=null;//table references
@@ -408,7 +380,7 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 	
 }
 //event on carousel slide
-function carusSlide()
+function carusSlide()//vracia index carouselu
 {
 	var cur=0;
 	briefContent(cur);//on initial call 
@@ -418,7 +390,7 @@ function carusSlide()
 			//console.log("index: " + cur );
 		});
 }
-function basicIntel()
+function basicIntel()//cisto debugovacia funkcia
 {
 	console.log($(window.top).height());
 	console.log(window.innerHeight);
@@ -498,7 +470,7 @@ function init()
     	progressBarMeasurement();
     });
 }
-function initArticles()
+function initArticles()//pre clanky a docy s menej narocnym obsahom
 {
 	var curtime, tout;
 	var lock=false;
@@ -520,4 +492,8 @@ function initArticles()
     {
     	progressBarMeasurement();
     });
+}
+function initAbout()//pre about
+{
+	
 }

@@ -8,3 +8,30 @@
 	color: #b1f36b;
 	font-size: 14pt;
 }
+
+.fade-out .carousel-inner .item /*nastavenie prechodov, pre vsetky itemy*/
+{
+	-webkit-transition: opacity 1.5s ease-out;
+	transition: opacity 1.5s ease-out;
+}
+.fade-out .carousel-inner .item.active, /*ak je item aktivny tak opacity=1*/
+.fade-out .carousel-inner .next.left, /*pre itemy kt. prichadzaju, ak click prida class next a left*/
+.fade-out .carousel-inner .prev.right
+{
+	opacity: 1;
+}
+.fade-out .carousel-inner .item,
+.fade-out .carousel-inner .active.left, /*pre itemy iduce vlavo fade*/
+.fade-out .carousel-inner .active.right
+{
+	opacity: 0;
+}
+.fade-out .carousel-inner .prev, 
+.fade-out .carousel-inner .next,
+.fade-out .carousel-inner .active.left, /* onclick ovladac pribudne aktivnemu prvku classa*/
+.fade-out .carousel-inner .active.right /*tato pribuda ak click na prev*/
+{
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	left: 0;
+}
