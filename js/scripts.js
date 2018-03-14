@@ -75,14 +75,14 @@ function temporaryEraseConditions()
 		clickFlag=true;
 		$("#hlavicka").css("max-height", '');
     	$("#nhead").css("max-height", '');
-    	heurSpLo();
+    	heurLo();
     }
     else
     {
     	clickFlag=false;
     	$("#hlavicka").css("max-height", 68);
     	$("#nhead").css("max-height", 60);
-    	heurSpLo();	
+    	heurLo();	
     }
 }
 
@@ -435,7 +435,7 @@ function heurSpLo()//specialny pripad, nhead kontajner
 	$("#layer2").css("width", 0);
 	var w=($("#nhead").width()/100)*40;
 	var h=($("#nhead").height()/100)*90;
-	//console.log("vypocital som: " + w + " h: " + h);
+	console.log("vypocital som: " + w + " h: " + h);
 	$("#layer1").css("height", h);
 	$("#layer1").css("width", w);
 	$("#layer2").css("height", h);
@@ -474,7 +474,7 @@ function initArticles()//pre clanky a docy s menej narocnym obsahom
 {
 	var curtime, tout;
 	var lock=false;
-	let car=new CarouselClass(60, 70);
+	let car=new CarouselClass(97, 70);
 	
 	heurLo();	
 	car.carusResponsive();
@@ -493,7 +493,26 @@ function initArticles()//pre clanky a docy s menej narocnym obsahom
     	progressBarMeasurement();
     });
 }
-function initAbout()//pre about
+function initSW()//pre about
 {
+	var curtime, tout;
+	var lock=false;
+	let car=new CarouselClass(97, 70);
 	
+	heurLo();	
+	car.carusResponsive();
+	adjustPadding();
+	progressBarMeasurement();
+	eventDispatcher(window);
+    window.addEventListener('resize', function f()//pozor na vnorene volania
+    {
+    	adjustPadding();
+		car.carusResponsive();
+		progressBarMeasurement();
+		setTimeout(() => {adjustPadding(); car.carusResponsive()}, 200);
+    });
+   	window.addEventListener('scroll', () => 
+    {
+    	progressBarMeasurement();
+    });
 }

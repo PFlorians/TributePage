@@ -184,29 +184,11 @@ ul.vlavo > li > p
 	display: inline;
 	background-color: rgba(0,0,0,.3);
 }
-/*
-@media (max-width: 766px) 
+.carousel img
 {
-	body
-	{
-		padding-top: 20px;
-	}
+	min-width: 100%;
+	max-width: none;
 }
-@media (min-width: 766px) 
-{
-	body
-	{
-		padding-top: 20px;
-	}
-}
-@media (max-width: 200px) 
-{
-	body
-	{
-		padding-top: 65px;
-	}
-}
-*/
 /*.separation table
 {
 	margin: 40px;

@@ -32,9 +32,9 @@
 	        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/beon" type="text/css"/> 
 	        
        	<!-- rest of head section -->
-        <title>About</title>
+        <title>Software</title>
     </head>
-    <body class="back" onload="initArticles()"> 
+    <body class="back" onload="initSW()"> 
     	<header class="page-header" id="headr"> <!-- komplet cely header moze byt dynamicky linkovany -->
 	    	<nav class="navbar navbar-inverse navbar-fixed-top bottom-margin" id="hlavicka">
 	    		<div id="nhead" class="navbar-header"><!-- dolezite koli mechanike 3-bar spuste -->
@@ -95,10 +95,61 @@
 	    	</nav>
 	    </header>
 	    <article class="container-fluid">
-	    	<h3 class="arcade-font-prince centrovanie">Software of the old  days</h3>
-	    	<p>
-	    		
-	    	</p>
+	    	<h3 class="arcade-font-prince centrovanie">Software of the old days</h3>
+	    	<div class="row"> 
+	    		<!-- SW carus -->
+	    		<!-- carousel -->
+		   		<div id="carusSW" class="carousel slide col-lg-12 col-md-12 col-sm-12 col-xs-12 fade-out" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000> 
+					<!-- indikatory -->
+					<ol class="carousel-indicators">
+						<li data-target="#carusSW" data-slide-to="0" class="active"></li>
+						<li data-target="#carusSW" data-slide-to="1" ></li>
+						<li data-target="#carusSW" data-slide-to="2" ></li>
+						<li data-target="#carusSW" data-slide-to="3" ></li>
+					</ol>
+					<!-- data items -->
+					<div class="carousel-inner" role="listbox" id="imgsCar">
+						<div class="item active" style="background-image: url(../img/nc.png);">
+							<img src="../img/nc.png" alt="Norton Commander"/>
+							<div class="carousel-caption">
+								<h3 class="hilight">Norton Commander - </h3>
+								<p class="hilight">Highly popular file manager</p>
+							</div>
+						</div>
+						<div class="item" style="background-image: url(../img/win3.png);">
+							<img src="../img/win3.png" alt="win 3.1"/>
+							<div class="carousel-caption">
+								<h3 class="hilight">Windows 3.1 - </h3>
+								<p class="hilight">An OS built upon MS-DOS</p>
+							</div>
+						</div>
+						<div class="item" style="background-image: url(../img/paradox.png);">
+							<img src="../img/paradox.png" alt="paradox"/>
+							<div class="carousel-caption">
+								<h3 class="hilight">Paradox 4.0 - </h3>
+								<p class="hilight">An old relational Database</p>
+							</div>
+						</div>
+						<div class="item" style="background-image: url(../img/DeskMate.png);">
+							<img src="../img/DeskMate.png" alt="desk mate"/>
+							<div class="carousel-caption">
+								<h3 class="hilight">Desk Mate- </h3>
+								<p class="hilight">MS-DOS planner/organizer</p>
+							</div>
+						</div>
+					</div>
+					<!-- ovladace -->
+					<a class="left carousel-control" href="#carusSW" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#carusSW" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+		   		</div>
+	    	</div>
+	    	
 		</article>
 	</body>
 </html>

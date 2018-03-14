@@ -3,26 +3,42 @@
  */
 class CarouselClass
 {
-	constructor(wt=60, ht=60)
+	constructor(wt=60, ht=60, bh=50, bv=50)
 	{
 		this._width=wt;
 		this._height=ht;
+		this._backV=bv;//vertical
+		this._backH=bh;//horizontal
 	}
 	styleDecisionCascade(sirka, vyska)//vytvori styl do docu
 	{
 		this._styl = null;
 		//console.log("vysk sirk: " + vyska + " " + sirka);
-		//if(sirka>=768)
-	//	{
+		if(window.innerWidth>=768)
+		{
+			this._backH=0;
+			this._backV=0;
 			//console.log("trigger detected");
 			this._styl=document.createElement("style");
 			this._styl.setAttribute("id", "styleCarusResp");
-			this._styl.innerHTML =  " .carousel { height: " + vyska + "px;}" +
-							" .carousel-inner {height: 100% !important;}" + 
-							".item {background-size: cover; background-position: 50% 50%;" +
-						      " width: 100%; height: 100%;}" +
+			this._styl.innerHTML =  " .carousel { height: " + vyska + "px; width: " + sirka +"px;}" +
+							" .carousel img{ min-width: " + this._width +"%;}"+
+							" .carousel-inner {height: 100% !important; width: 100% !important;}" + 
+							".item {background-size: cover; background-position: "+ this._backH +"% "+ this._backV +"%;" +
+						      " width: 100%; height: 100%; background-repeat: no-repeat; }" +
 							".item img { visibility: hidden;}";		
-		//}
+		}
+		else
+		{
+			this._styl=document.createElement("style");
+			this._styl.setAttribute("id", "styleCarusResp");
+			this._styl.innerHTML =  " .carousel { height: " + vyska + "px;}" +
+							" .carousel img{ min-width: " + this._width +"%;}"+
+							" .carousel-inner {height: 100% !important; width: 100% !important;}" + 
+							".item {background-size: cover; background-position: "+ this._backH +"% "+ this._backV +"%;" +
+						      " width: 100%; height: 100%; background-repeat: no-repeat;}" +
+							".item img { visibility: hidden;}";	
+		}
 		
 		return this._styl;
 	}
