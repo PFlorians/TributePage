@@ -12,7 +12,7 @@
 			<script src="../js/utilitary.js"></script>
 			<script src="../js/CarouselClass.js"></script>
 	        <script src="../js/scripts.js"></script>
-	        	        
+	        <script src="../js/main.js"></script>
 	       	<!-- vlastny skompilovany bootstrap -->
 			<link rel="stylesheet" href="../css/bootstrap3.3.7_v2/css/bootstrap.min.css"/>
 			<!-- vlastny JS zo skompilovaneho bootstrapu -->
@@ -21,7 +21,7 @@
 			<!-- custom css -->
 	       	<link rel="stylesheet" href="../css/frickles.css"/>
 	       	<link rel="stylesheet" href="../css/heavy.css"/>
-		
+			<link rel="stylesheet" href="../css/modal.css"/>
 		<!-- configuration and misc references -->
 			
 			<!-- follow device width, initial zoom level let be default -->
@@ -64,9 +64,9 @@
 		    						</span>
 		    					</a>
 		    						<ul class="dropdown-menu">
-		    							<li><span><img id="refe" src="../img/references.png"/><a href="#">Referrences</a></span></li>
-		    							<li><span><img id="ninety" src="../img/90s.png"/><a href="#">90's websites</a></span></li>
-		    							<li><span><img id="gms" src="../img/cd.png"/><a href="#">Games</a></span></li>
+		    							<li><span><img id="refe" src="../img/references.png" alt="referrences"/><a href="#">Referrences</a></span></li>
+		    							<li><span><img id="ninety" src="../img/90s.png" alt="nineties"/><a href="#">90's websites</a></span></li>
+		    							<li><span><img id="gms" src="../img/cd.png" alt="games"/><a href="#">Games</a></span></li>
 		    						</ul>
 		    					<!--</a>-->
 		    				</li>
@@ -77,7 +77,7 @@
 		    					data-placement="bottom" >
 		    						Log In <span class="glyphicon glyphicon-log-in"></span></a>
 		    				</li>
-		    				<li><a href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
+		    				<li><a onclick="initModal()" id="register" href="#"  class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
 		    			</ul>
 		    			<div id="login-content" class="hide">
 			    			<form class="form-inline">
@@ -103,6 +103,7 @@
 						<ol class="carousel-indicators">
 							<li data-target="#carusAmiga" data-slide-to="0" class="active"></li>
 							<li data-target="#carusAmiga" data-slide-to="1" ></li>
+							<li data-target="#carusAmiga" data-slide-to="2" ></li>
 						</ol>
 						<!-- data items -->
 						<div class="carousel-inner" role="listbox" id="imgsCar">
@@ -111,6 +112,9 @@
 							</div>
 							<div class="item" style="background-image: url(../img/Icaros.png);">
 								<img src="../img/Icaros.png" alt="icaros"/>
+							</div>
+							<div class="item" style="background-image: url(../img/amiga1.png);">
+								<img src="../img/amiga1.png" alt="amiga-look"/>
 							</div>
 						</div>
 						<!-- ovladace -->
@@ -131,6 +135,7 @@
 Building on the sources of AmigaOS 3.x, Hyperion released the first alpha of AmigaOS 4.0 in 2004 to beta testers. The first full public release reached users in 2006.
 Hyperion Entertainment are planning many more revisions and updates to AmigaOS. The authentic Amiga experience continues. 
 The history in the 80's and 90's was according to official amiga <a class="remove-deco" href="http://www.amigaos.net/content/10/history-amigaos" target="_blank"> website</a> as follows
+						</p>
 						<ul class="vlavo">
 							<li class="localHeader">
 								<p>October 1985 - </p>
@@ -178,6 +183,7 @@ The history in the 80's and 90's was according to official amiga <a class="remov
 								<p>Workbench 3.9 released by Haage and Partner</p>
 							</li>
 						</ul>
+	    			<p>
 	    			Those were of course the old versions of the system, which sometimes were quite unstable as can be seen on the graphic image below
 	    			(credits to <a class="remove-deco" href="https://www.youtube.com/channel/UCGeKUubfoxVRZA33RdZp-dw" target="_blank">Gilbert Gauthier</a>). 
 	    			The native Amiga windowing system is called Intuition, which handles input from the keyboard and mouse and rendering of screens, windows and widgets.
@@ -234,14 +240,40 @@ Linux kernel developer Linus Torvalds once described the Amiga design as coopera
 								<p>for a quantum (a slice of time).</p>
 							</li>
 					</ol>
-					The terms "task" and "process" are often used interchangeably to represent the generic concept of task. On the Amiga, this terminology can be a little confusing because of the names of the data structures that are associated with Exec tasks. Each task has a structure associated with it called a Task structure (defined in <exec/tasks.h>). Most application tasks use a superset of the Task structure called a Process structure (defined in <dos/dosextens.h>). These terms are confusing to Amiga programmers because there is an important distinction between the Exec task with only a Task structure and an Exec task with a Process structure.
+					<p>
+					The terms "task" and "process" are often used interchangeably to represent the generic concept of task. On the Amiga, this terminology can be a little confusing because of the names of the data structures that are associated with Exec tasks. Each task has a structure associated with it called a Task structure (defined in &lt; exec/tasks.h&gt;). Most application tasks use a superset of the Task structure called a Process structure (defined in &lt;dos/dosextens.h&gt;). These terms are confusing to Amiga programmers because there is an important distinction between the Exec task with only a Task structure and an Exec task with a Process structure.
 The Process structure builds on the Task structure and contains some extra fields which allow the DOS library to associate an AmigaDOS environment to the task. Some elements of a DOS environment include a current input and output stream and a current working directory. These elements are important to applications that need to do standard input and output using functions like printf().
 Exec only pays attention to the Task structure portion of the Process structure, so, as far as Exec is concerned, there is no difference between a task with a Task structure and a task with a Process structure. Exec considers both of them to be tasks.
 An application doesn't normally worry about which structure their task uses. Instead, the system that launches the application takes care of it. Both Workbench and the Shell (CLI) attach a Process structure to the application tasks that they launch. 
 					To find out more visit: <a href="http://wiki.amigaos.net/wiki/Kernel" target="_blank">amiga doc</a> 
 	    			</p>
 	    		</section>
-	    		
+	    		<div id="modal" class="modal">
+					<div id="pseudo-container" class="pseudo-container">
+						<div id="psdoCntnr" class="modal-cont">
+							<p class="paraInlineModal">Register</p>
+							<span class="clsBtn" id="clsModal" onclick="closeModal()">&times;</span>
+							<form id="modalFrm" class="frmStlng">
+								<label for="uname">Username</label>
+								<input type="text" id="uname" placeholder="Enter username"/>
+								<label for="passwd1">Password</label>
+								<input type="password" id="passwd1"/>
+								<label for="passwd2">Repeat password</label>
+								<input type="password" id="passwd2"/>
+								<fieldset name="gender">
+									<legend>Pick a Gender</legend>
+									<label for="male">Male</label>
+									<input type="radio" id="male" name="gender"/>
+									
+									<label for="female">Female</label>
+									<input type="radio" id="female" name="gender"/>
+								</fieldset>
+								<input type="submit" value="Submit"/>
+								
+							</form>
+						</div>
+					</div>
+				</div>
 	    	</article>
 	    	<footer class="footer">
 	        	<hr/>
@@ -249,7 +281,7 @@ An application doesn't normally worry about which structure their task uses. Ins
 	        		<a href="mailto:patrikflorians@gmail.com" class="remove-deco"> Patrik Florians </a>2018
 	        		</p>
 	        	<p class="centrovanie">Powered by <a class="remove-deco" href="getbootstrap.org">bootstrap</a></p>
-	        	<p class="centrovanie"><a class="remove-deco" href="#carus">back to top</a></p>
+	        	<p class="centrovanie">Image sources: <a href="http://www.amiga-look.org/artwork/amigaos-411" target="_blank">amiga-looks</a></p>
 	        </footer>
 	</body>
 </html>

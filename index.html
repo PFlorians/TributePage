@@ -12,7 +12,7 @@
 			<script src="js/utilitary.js"></script>
 			<script src="js/CarouselClass.js"></script>
 	        <script src="js/scripts.js"></script>
-	        	        
+	       	<script src="js/modal.js"></script>
 	       	<!-- Latest compiled bootstrap CSS -->
 			<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">--> 
 			<!-- vlastny skompilovany bootstrap -->
@@ -26,7 +26,7 @@
 			<!-- custom css -->
 	       	<link rel="stylesheet" href="css/frickles.css"/>
 	       	<link rel="stylesheet" href="css/heavy.css"/>
-		
+			<link rel="stylesheet" href="css/modal.css"/>
 		<!-- configuration and misc references -->
 			
 			<!-- follow device width, initial zoom level -->
@@ -35,11 +35,12 @@
 	 		<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/hi" type="text/css"/> 
 	 		<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/press-start-2p" type="text/css"/>
 	        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/beon" type="text/css"/> 
-	        
+	    
        	<!-- rest of head section -->
         <title>Retro Soft</title>
     </head>
-    <body class="back" onload="init()"> 
+    <body class="back" onload="init()">
+    	
 	    	<header class="page-header" id="headr"> <!-- komplet cely header moze byt dynamicky linkovany -->
 	    		<nav class="navbar navbar-inverse navbar-fixed-top bottom-margin" id="hlavicka">
 	    			<div id="nhead" class="navbar-header"><!-- dolezite koli mechanike 3-bar spuste -->
@@ -69,9 +70,9 @@
 		    						</span>
 		    					</a>
 		    						<ul class="dropdown-menu">
-		    							<li><span><img id="refe" src="img/references.png"/><a href="#">Referrences</a></span></li>
-		    							<li><span><img id="ninety" src="img/90s.png"/><a href="#">90's websites</a></span></li>
-		    							<li><span><img id="gms" src="img/cd.png"/><a href="#">Games</a></span></li>
+		    							<li><span><img id="refe" src="img/references.png" alt="references"/><a href="#">Referrences</a></span></li>
+		    							<li><span><img id="ninety" src="img/90s.png" alt="nineties"/><a href="#">90's websites</a></span></li>
+		    							<li><span><img id="gms" src="img/cd.png" alt="games"/><a href="#">Games</a></span></li>
 		    						</ul>
 		    					<!--</a>-->
 		    				</li>
@@ -82,10 +83,10 @@
 		    					data-placement="bottom" >
 		    						Log In <span class="glyphicon glyphicon-log-in"></span></a>
 		    				</li>
-		    				<li><a href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
+		    				<li><a onclick="initModal()" id="register" href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
 		    			</ul>
 		    			<div id="login-form" class="hide">
-			    			<form class="form-inline">
+			    			<form class="navbar-form navbar-left">
 			    				<div class="form-group">
 				    				<input type="text" class="form-control" maxlength ="4" placeholder="username"/>
 				    				<input type="password" class="form-control" maxlength="4" placeholder="password"/><br/>
@@ -196,6 +197,32 @@
 						system API called Intuition and a desktop file manager called Workbench.
 	    			</p>
 	    		</div>
+	    		<div id="modal" class="modal">
+					<div id="pseudo-container" class="pseudo-container">
+						<div id="psdoCntnr" class="modal-cont">
+							<p class="paraInlineModal">Register</p>
+							<span class="clsBtn" id="clsModal" onclick="closeModal()">&times;</span>
+							<form id="modalFrm" class="frmStlng">
+								<label for="uname">Username</label>
+								<input type="text" id="uname" placeholder="Enter username"/>
+								<label for="passwd1">Password</label>
+								<input type="password" id="passwd1"/>
+								<label for="passwd2">Repeat password</label>
+								<input type="password" id="passwd2"/>
+								<fieldset name="gender">
+									<legend>Pick a Gender</legend>
+									<label for="male">Male</label>
+									<input type="radio" id="male" name="gender"/>
+									
+									<label for="female">Female</label>
+									<input type="radio" id="female" name="gender"/>
+								</fieldset>
+								<input type="submit" value="Submit"/>
+								
+							</form>
+						</div>
+					</div>
+				</div>
 	        </article>
 	        <!--<div>
 	        	<div id="cons-title" class="cons-title">
@@ -215,7 +242,6 @@
 	        		<a href="mailto:patrikflorians@gmail.com" class="remove-deco"> Patrik Florians </a>2018
 	        		</p>
 	        	<p class="centrovanie">Powered by <a class="remove-deco" href="getbootstrap.org">bootstrap</a></p>
-	        	<p class="centrovanie"><a class="remove-deco" href="#carus">back to top</a></p>
 	        </footer>
     </body>
 </html>

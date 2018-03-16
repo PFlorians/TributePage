@@ -1,0 +1,151 @@
+/*pozadie modal okna*/
+.modal
+{
+	display: none;/*az onclick*/
+	background-color: rgba(0,0,0,0.5);/*polocierna*/
+	z-index: 100;
+	left: 0;
+	top: 0;
+	width: 100%;/*roztiahnut na obrazovku*/
+	height: 100%;
+	overflow: auto;
+	position: fixed;
+	animation-name: objavenie;
+	animation-delay: 1s;
+	-webkit-animation-name: objavenie;
+	-webkit-animation-delay: 1s; 
+}
+.modal-cont
+{
+	display: block;
+	position: fixed;
+	overflow: auto;/*ak by obsah pretiekol box*/
+	width: inherit;
+	height: inherit;
+	animation: slide 0.5s forwards;
+	animation-delay: 0s;
+	-webkit-animation: slide 0.5s forwards;
+	-webkit-animation-delay: 0s;
+	animation-timing-function: ease-in;
+	-webkit-animation-timing-function: ease-in;
+}
+.clsBtn
+{
+	float:right;
+	/*margin: 5px 5px;*/
+	font-size: 24pt;
+	color: white;
+	clear: both;
+	cursor: pointer;
+}
+.clsBtn:hover
+{
+	color: #c9cccb;
+	cursor: pointer;
+}
+.pseudo-container /*nieco ako background*/
+{
+	width: 60%;
+	height: 62%;
+	background-color: rgb(0,0,0); /*ak by to dalsie neslo*/
+	background-color: rgba(0,0,0,1);
+	border-radius: 5px;
+	padding: 10px;
+	overflow: auto;
+	display: block;
+	position: fixed;
+	animation: slide 0.5s forwards;
+	animation-delay: 0s;
+	-webkit-animation: slide 0.5s forwards;
+	-webkit-animation-delay: 0s;
+	animation-timing-function: ease-in;
+	-webkit-animation-timing-function: ease-in;
+}
+.frmStlng
+{
+	display: block;
+	margin: 5px;
+	float: left;
+}
+.frmStlng input[type=text] 
+{
+	width: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+	border: 3px solid #c0c6c6;
+	border-radius: 5px;
+	background-color: #242828;
+	color: white;
+}
+.frmStlng input[type=password]
+{
+	width: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+	border: 3px solid #c0c6c6;
+	border-radius: 5px;
+	background-color: #242828;
+	color: white;
+}
+.frmStlng input[type=submit]
+{
+	width: 20%;
+	box-sizing: content-box;
+	border-radius: 5px;
+	background-color: #e29518;
+	color: black;
+	font-weight: bold;
+	float: left;
+}
+.frmStlng input[type=submit]:hover
+{
+	background-color: #c68925;
+}
+.frmStlng legend, label
+{
+	color: #b1f36b;
+	padding-left: 10%;
+}
+.frmStlng label[for=male]
+{
+	color: #0be5ed;
+}
+.frmStlng label[for=female]
+{
+	color: #f76ff5;
+}
+.frmStlng input[type=text]:focus
+{
+	border: 3px solid #c53ce8;
+}
+.frmStlng input[type=password]:focus
+{
+	border: 3px solid #c53ce8;
+}
+.paraInlineModal
+{
+	display: inline;
+	font-weight: bold;
+	font-size: 16pt;
+	color: #27f4e3;
+}
+@keyframes objavenie
+{
+	from {opacity: 0;}
+	to{opacity: 1;}
+}
+@-webkit-keyframes objavenie
+{
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+@keyframes slide
+{
+	from{top:-50%;right:-50%; opacity: 0;}
+	to{top:20%; right:20%; left: 20%; bottom: 20%;opacity: 1;}
+}
+@-webkit-keyframes slide
+{
+	from{top:-50%;right:-50%; opacity: 0;}
+	to{top:20%; right:20%; left:20%; bottom: 20%; opacity: 1;}
+}

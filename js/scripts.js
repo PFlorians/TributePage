@@ -493,26 +493,3 @@ function initArticles()//pre clanky a docy s menej narocnym obsahom
     	progressBarMeasurement();
     });
 }
-function initSW()//pre about
-{
-	var curtime, tout;
-	var lock=false;
-	let car=new CarouselClass(97, 70);
-	
-	heurLo();	
-	car.carusResponsive();
-	adjustPadding();
-	progressBarMeasurement();
-	eventDispatcher(window);
-    window.addEventListener('resize', function f()//pozor na vnorene volania
-    {
-    	adjustPadding();
-		car.carusResponsive();
-		progressBarMeasurement();
-		setTimeout(() => {adjustPadding(); car.carusResponsive()}, 200);
-    });
-   	window.addEventListener('scroll', () => 
-    {
-    	progressBarMeasurement();
-    });
-}

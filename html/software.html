@@ -12,7 +12,7 @@
 			<script src="../js/utilitary.js"></script>
 			<script src="../js/CarouselClass.js"></script>
 	        <script src="../js/scripts.js"></script>
-	        	        
+	       	<script src="../js/modal.js"></script>
 			<!-- vlastny skompilovany bootstrap -->
 			<link rel="stylesheet" href="../css/bootstrap3.3.7_v2/css/bootstrap.min.css"/>
 			<!-- vlastny JS zo skompilovaneho bootstrapu -->
@@ -21,7 +21,8 @@
 			<!-- custom css -->
 	       	<link rel="stylesheet" href="../css/frickles.css"/>
 	       	<link rel="stylesheet" href="../css/heavy.css"/>
-		
+			<link rel="stylesheet" href="../css/modal.css"/>
+			
 		<!-- configuration and misc references -->
 			
 			<!-- follow device width, initial zoom level -->
@@ -34,7 +35,7 @@
        	<!-- rest of head section -->
         <title>Software</title>
     </head>
-    <body class="back" onload="initSW()"> 
+    <body class="back" onload="initArticles()"> 
     	<header class="page-header" id="headr"> <!-- komplet cely header moze byt dynamicky linkovany -->
 	    	<nav class="navbar navbar-inverse navbar-fixed-top bottom-margin" id="hlavicka">
 	    		<div id="nhead" class="navbar-header"><!-- dolezite koli mechanike 3-bar spuste -->
@@ -64,9 +65,9 @@
 		    					</span>
 		    				</a>
 		    					<ul class="dropdown-menu">
-		    						<li><span><img id="refe" src="../img/references.png"/><a href="#">Referrences</a></span></li>
-		    						<li><span><img id="ninety" src="../img/90s.png"/><a href="#">90's websites</a></span></li>
-		    						<li><span><img id="gms" src="../img/cd.png"/><a href="#">Games</a></span></li>
+		    						<li><span><img id="refe" src="../img/references.png" alt="referrences"/><a href="#">Referrences</a></span></li>
+		    						<li><span><img id="ninety" src="../img/90s.png" alt="nineties"/><a href="#">90's websites</a></span></li>
+		    						<li><span><img id="gms" src="../img/cd.png" alt="games"/><a href="#">Games</a></span></li>
 		    					</ul>
 		    			</li>
 		    		</ul>
@@ -76,7 +77,7 @@
 		    				data-placement="bottom" >
 		    					Log In <span class="glyphicon glyphicon-log-in"></span></a>
 		    			</li>
-		    			<li><a href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
+		    			<li><a onclick="initModal()" id="register" href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
 		    		</ul>
 		    		<div id="login-form" class="hide">
 			   			<form class="form-inline">
@@ -149,7 +150,32 @@
 					</a>
 		   		</div>
 	    	</div>
-	    	
+			<div id="modal" class="modal">
+					<div id="pseudo-container" class="pseudo-container">
+						<div id="psdoCntnr" class="modal-cont">
+							<p class="paraInlineModal">Register</p>
+							<span class="clsBtn" id="clsModal" onclick="closeModal()">&times;</span>
+							<form id="modalFrm" class="frmStlng">
+								<label for="uname">Username</label>
+								<input type="text" id="uname" placeholder="Enter username"/>
+								<label for="passwd1">Password</label>
+								<input type="password" id="passwd1"/>
+								<label for="passwd2">Repeat password</label>
+								<input type="password" id="passwd2"/>
+								<fieldset name="gender">
+									<legend>Pick a Gender</legend>
+									<label for="male">Male</label>
+									<input type="radio" id="male" name="gender"/>
+									
+									<label for="female">Female</label>
+									<input type="radio" id="female" name="gender"/>
+								</fieldset>
+								<input type="submit" value="Submit"/>
+								
+							</form>
+						</div>
+					</div>
+				</div>
 		</article>
 	</body>
 </html>
