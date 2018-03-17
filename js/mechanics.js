@@ -1,21 +1,58 @@
 /**
- * @author Prometeus
+ * @author PFlorians
  */
 $(document).ready(
 	function()
     {	
-    	//> znaci priameho potomka`
-    	//$("div > ul[name*=list1] > li[name*=monstro][id*=bannerlord]").css("color", "#00f7f7");
-    	//console.log("width: " + $(window).width() + " height: " + $(window).height());
-		$("[data-toggle=popover]").popover({
-			html: true,
-			content: function()
-			{
-				return $("#login-form").html();
-			}
-		});
-    	$("#login").popover();
-    	$("#cons").css("height", ($(window).height()/100)*20);
+    	var meno=window.location.pathname;
+    	var pg=meno.split("/").pop();
+    	//console.log("strank: " + pg.split(".")[0] + " loca: " + meno);
+    	var n=String(pg.split(".")[0]);
+    	//console.log("n: " + n + " nacitavam");
+    	$("body").addClass("back")
+    	if(meno.indexOf("html/")!=-1)
+    	{//potom to musi byt definn ako sub doc aka article
+    		//predpoklad vsetky dyna of type name-body.html
+	    	$("body").on("load", () => {
+    				$("body").load("dynamic-content/"+n+"-body.html #obsah",  
+						function(responseTxt, statusTxt, xhr){
+		        		if(statusTxt == "error")
+		        		{
+		            		alert("Error: " + xhr.status + ": " + xhr.statusText);
+		           		}
+		           		else
+		           		{
+		           			setTimeout(initArticles(), 1000);
+		           		}
+		    			});
+		    		}
+	    		);
+	    	$("body").trigger("load");//volaj event, niekdey sa nespusti
+	    }
+	    else 
+	    {
+	    	console.log("n: " + n + " nacitavam");
+	    	$("body").on("load", () => {
+    			$("body").load("html/dynamic-content/"+n+"-body.html #obsah",  
+						function(responseTxt, statusTxt, xhr)
+						{
+		        			if(statusTxt == "error")
+		        			{
+		            			alert("Error: " + xhr.status + ": " + xhr.statusText);
+		           			}
+		           			else
+		           			{
+		           				setTimeout(init(), 1000);
+		           			}
+		    			}
+		    		);
+		    	}
+	    	);
+	    	$("body").trigger("load");//volaj event, niekdey sa nespusti
+	    }
+		
+    	//experimentalny widget
+    	/*$("#cons").css("height", ($(window).height()/100)*20);
     	$("#cons-title").css("bottom", ($("#cons").height()+2));
     	$("#cons-title").click(function()
     		{
@@ -48,6 +85,6 @@ $(document).ready(
     			}
     			return false;
     		}
-    	);
+    	);*/
     }
 );

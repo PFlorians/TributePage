@@ -446,12 +446,21 @@ function heurSpLo()//specialny pripad, nhead kontajner
 
 function init()
 {
-	var curtime, tout;
+	var curtime;
+	var tout;
 	var lock=false;
 	let car=new CarouselClass(60, 70);
 	//init onload sequence
 	//basicIntel();
 	//logoHeuristics();
+	$("[data-toggle=popover]").popover({//lebo predtym nieje istota, ze element existuje
+				html: true,
+				content: function()
+				{
+					return $("#login-form").html();
+				}
+			});
+	    	$("#login").popover();
 	heurLo();	
 	car.carusResponsive();
 	carusSlide();
@@ -472,10 +481,18 @@ function init()
 }
 function initArticles()//pre clanky a docy s menej narocnym obsahom
 {
-	var curtime, tout;
+	var curtime;
+	var tout;
 	var lock=false;
 	let car=new CarouselClass(97, 70);
-	
+	$("[data-toggle=popover]").popover({
+				html: true,
+				content: function()
+				{
+					return $("#login-form").html();
+				}
+			});
+	$("#login").popover();
 	heurLo();	
 	car.carusResponsive();
 	adjustPadding();
