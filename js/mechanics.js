@@ -6,9 +6,13 @@ $(document).ready(
     {	
     	var meno=window.location.pathname;
     	var pg=meno.split("/").pop();
-    	//console.log("strank: " + pg.split(".")[0] + " loca: " + meno);
+    	console.log("strank: " + pg.split(".")[0] + " loca: " + meno);
     	var n=String(pg.split(".")[0]);
-    	//console.log("n: " + n + " nacitavam");
+    	console.log("n: " + n + " nacitavam");
+    	if(n=="")//na linuxovych serveroch je to len /
+    	{
+    		n="index";
+    	}
     	$("body").addClass("back")
     	if(meno.indexOf("html/")!=-1)
     	{//potom to musi byt definn ako sub doc aka article
@@ -31,7 +35,7 @@ $(document).ready(
 	    }
 	    else 
 	    {
-	    	console.log("n: " + n + " nacitavam");
+	    	//console.log("n: " + n + " nacitavam");
 	    	$("body").on("load", () => {
     			$("body").load("html/dynamic-content/"+n+"-body.html #obsah",  
 						function(responseTxt, statusTxt, xhr)
