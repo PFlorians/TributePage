@@ -17,7 +17,7 @@ function progressBarMeasurement()//pre progress bar
 	pb.style.width=(((document.documentElement.scrollTop + viewableH)/scrl)*100) + "%";
 }
 
-function navbarOverflowCheck()
+function navbarOverflowCheck()//niekde moze vypaltit na tucny kus headra
 {
 	//console.log("overflow: " + $("#hlavicka").height() + " w: " + $("#hlavicka").width());
 	//console.log("overflow2: " + $("#nhead").height() + " w: " + $("#nhead").width());
@@ -452,7 +452,6 @@ function init()
 	let car=new CarouselClass(60, 70);
 	//init onload sequence
 	//basicIntel();
-	//logoHeuristics();
 	$("[data-toggle=popover]").popover({//lebo predtym nieje istota, ze element existuje
 				html: true,
 				content: function()

@@ -12,6 +12,7 @@
 .fade-out .carousel-inner .item /*nastavenie prechodov, pre vsetky itemy*/
 {
 	-webkit-transition: opacity 1.5s ease-out;
+	-moz-transition: opacity 1.5s ease-out;
 	transition: opacity 1.5s ease-out;
 }
 .fade-out .carousel-inner .item.active, /*ak je item aktivny tak opacity=1*/
@@ -32,6 +33,18 @@
 .fade-out .carousel-inner .active.right /*tato pribuda ak click na prev*/
 {
 	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 	left: 0;
+}
+/*fonts go here*/
+@font-face/*explorer*/
+{
+	font-family: "Neon Pixel-7";
+	src: url("../fonts/neon_pixel-7.eot");
+}
+@font-face
+{
+	font-family: "Neon Pixel-7";
+	src: url("../fonts/neon_pixel-7.ttf");
 }

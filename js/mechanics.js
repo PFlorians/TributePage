@@ -17,7 +17,7 @@ $(document).ready(
     	if(meno.indexOf("html/")!=-1)
     	{//potom to musi byt definn ako sub doc aka article
     		//predpoklad vsetky dyna of type name-body.html
-	    	$("body").on("load", () => {
+	    	$("body").on("load", () => {//tu bol v jquery bug
     				$("body").load("dynamic-content/"+n+"-body.html #obsah",  
 						function(responseTxt, statusTxt, xhr){
 		        		if(statusTxt == "error")
@@ -26,7 +26,7 @@ $(document).ready(
 		           		}
 		           		else
 		           		{
-		           			setTimeout(initArticles(), 1000);
+		           			setTimeout(initArticles(), 100);
 		           		}
 		    			});
 		    		}
@@ -46,7 +46,7 @@ $(document).ready(
 		           			}
 		           			else
 		           			{
-		           				setTimeout(init(), 1000);
+		           				setTimeout(init(), 100);
 		           			}
 		    			}
 		    		);
