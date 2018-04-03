@@ -433,7 +433,7 @@ function heurSpLo()//specialny pripad, nhead kontajner
 	$("#layer1").css("width", 0);
 	$("#layer2").css("height", 0);
 	$("#layer2").css("width", 0);
-	var w=($("#nhead").width()/100)*40;
+	var w=($("#nhead").width()/100)*70;
 	var h=($("#nhead").height()/100)*90;
 	console.log("vypocital som: " + w + " h: " + h);
 	$("#layer1").css("height", h);
