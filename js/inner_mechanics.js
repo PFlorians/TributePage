@@ -30,7 +30,7 @@ function loadFile(path)
 		}
 	);
 }
-function pseudoParser(raw, anchor)
+function pseudoParser(raw, anchor)//pseudo parser na surovy HTML text
 {
 	var contentContainer=[];
 	var kotva=String(anchor); 

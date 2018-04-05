@@ -4,7 +4,54 @@
 $(document).ready(
 	function()
     {	
-    	//logicke vars
+    	switch(window.location.protocol)
+    	{
+    		case 'http:':
+    			serverVariant();
+    			break;
+    		case 'https:':
+    			serverVariant();
+    			break;
+    		case 'file:':
+    			staticVariant();
+    			break;
+    		default:
+    			staticVariant();
+    			//static variant
+    	}
+		
+    }
+);
+function staticVariant()
+{
+	//logicke vars
+	console.log("static-variant");
+    	var content=[];//zbiera nacitany obsah
+    	var tmpObj="";//docasna premenna na objekt
+    	//funkcne vars
+    	var meno=window.location.pathname;
+    	var pg=meno.split("/").pop();
+    	//console.log("strank: " + pg.split(".")[0] + " loca: " + meno);
+    	var n=String(pg.split(".")[0]);
+    	
+    	//console.log("n: " + n + " nacitavam");
+    	if(n=="")//na linuxovych serveroch je to len /
+    	{
+    		n="index";
+    	}
+    	$("body").addClass("back")
+    	if(meno.indexOf("html/")!=-1)
+    	{
+    		window.location="dynamic-content/offline-docs/"+n+"-body.html";
+    	}
+    	else if(meno.indexOf(""))
+    	{
+    		window.location="html/dynamic-content/offline-docs/"+n+"-body.html";
+    	}
+}
+function serverVariant()
+{
+	//logicke vars
     	var content=[];//zbiera nacitany obsah
     	var tmpObj="";//docasna premenna na objekt
     	//funkcne vars
@@ -129,8 +176,10 @@ $(document).ready(
 		    );
 	    	$("body").trigger("load");//volaj event, niekdey sa nespusti
 	    }
-		
-    	//experimentalny widget
+}
+function widget()
+{
+	//experimentalny widget
     	/*$("#cons").css("height", ($(window).height()/100)*20);
     	$("#cons-title").css("bottom", ($("#cons").height()+2));
     	$("#cons-title").click(function()
@@ -165,5 +214,4 @@ $(document).ready(
     			return false;
     		}
     	);*/
-    }
-);
+}
