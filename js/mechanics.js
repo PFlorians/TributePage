@@ -4,28 +4,7 @@
 $(document).ready(
 	function()
     {	
-    	switch(window.location.protocol)
-    	{
-    		case 'http:':
-    			serverVariant();
-    			break;
-    		case 'https:':
-    			serverVariant();
-    			break;
-    		case 'file:':
-    			staticVariant();
-    			break;
-    		default:
-    			staticVariant();
-    			//static variant
-    	}
-		
-    }
-);
-function staticVariant()
-{
-	//logicke vars
-	console.log("static-variant");
+    	console.log("static-variant");
     	var content=[];//zbiera nacitany obsah
     	var tmpObj="";//docasna premenna na objekt
     	//funkcne vars
@@ -42,6 +21,52 @@ function staticVariant()
     	$("body").addClass("back")
     	if(meno.indexOf("html/")!=-1)
     	{
+    		initArticles();
+    	}
+    	else 
+    	{
+    		init();
+    	}
+    	/*
+    	 * decomissioned branch for later rework 
+    	 switch(window.location.protocol)
+    	{
+    		case 'http:':
+    			serverVariant();
+    			break;
+    		case 'https:':
+    			serverVariant();
+    			break;
+    		case 'file:':
+    			staticVariant();
+    			break;
+    		default:
+    			staticVariant();
+    			//static variant
+    	}*/
+		
+    }
+);
+function staticVariant()
+{
+	//logicke vars
+		console.log("static-variant");
+    	var content=[];//zbiera nacitany obsah
+    	var tmpObj="";//docasna premenna na objekt
+    	//funkcne vars
+    	var meno=window.location.pathname;
+    	var pg=meno.split("/").pop();
+    	//console.log("strank: " + pg.split(".")[0] + " loca: " + meno);
+    	var n=String(pg.split(".")[0]);
+    	
+    	//console.log("n: " + n + " nacitavam");
+    	if(n=="")//na linuxovych serveroch je to len /
+    	{
+    		n="index";
+    	}
+    	$("body").addClass("back");
+    	if(meno.indexOf("html/")!=-1)
+    	{
     		window.location="dynamic-content/offline-docs/"+n+"-body.html";
     	}
     	else if(meno.indexOf(""))
@@ -49,7 +74,7 @@ function staticVariant()
     		window.location="html/dynamic-content/offline-docs/"+n+"-body.html";
     	}
 }
-function serverVariant()
+function serverVariant()//if on server only
 {
 	//logicke vars
     	var content=[];//zbiera nacitany obsah
