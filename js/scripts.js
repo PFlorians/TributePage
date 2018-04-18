@@ -3,7 +3,9 @@
  */
 //current carousel index - index at which carousel starts
 var cur=0;
-var clickFlag=false;
+var clickFlag=false;//ci som klikol na rolovacie menu
+var popoverClicked=false;//ci je kliknute na popover
+var car;//instancia carouselu predana z inicializacnej funkcie
 
 //logika progress baru
 function progressBarMeasurement()//pre progress bar
@@ -40,6 +42,7 @@ function adjustPadding()
     {
     	//console.log("the special case " + $("#mainNav").height());
     	$("body").css("padding-top", 24);
+    	heurSpLo();
     }
     else //if(window.innerWidth >=768 || (window.innerWidth <= 768 && window.innerHeight >200))//stara verzia
     {
@@ -47,23 +50,34 @@ function adjustPadding()
     	{
     		$("#hlavicka").css("max-height", 68);
     		$("#nhead").css("max-height", 60);
-    		heurSpLo();	
+    		if(window.innerWidth<=1195)//len custom bootstrap
+		    {
+		    	$("body").css("padding-top", 70);
+		    	heurSpLo();
+		    }
+		    else
+		    {
+		    	$("body").css("padding-top", 80);
+		    	heurLo();
+		    }	
     	}
     	else
     	{
     		//console.log("zvacseny");
     		$("#hlavicka").css("max-height", '');
     		$("#nhead").css("max-height", '');
-    		heurLo();
+    		if(window.innerWidth<=1195)//len custom bootstrap
+		    {
+		    	$("body").css("padding-top", 70);
+		    	heurSpLo();
+		    }
+		    else
+		    {
+		    	$("body").css("padding-top", 80);
+		    	heurLo();
+		    }
 	    }
-	    if(window.innerWidth<=1195)//len custom bootstrap
-	    {
-	    	$("body").css("padding-top", 70);
-	    }
-	    else
-	    {
-	    	$("body").css("padding-top", 80);
-	    }
+	    
 	}
 	
 }
@@ -75,14 +89,14 @@ function temporaryEraseConditions()
 		clickFlag=true;
 		$("#hlavicka").css("max-height", '');
     	$("#nhead").css("max-height", '');
-    	heurLo();
+    	heurSpLo();
     }
     else
     {
     	clickFlag=false;
     	$("#hlavicka").css("max-height", 68);
     	$("#nhead").css("max-height", 60);
-    	heurLo();	
+    	heurSpLo();	
     }
 }
 
@@ -443,69 +457,49 @@ function heurSpLo()//specialny pripad, nhead kontajner
 	$("#logo").css("height", h);
 	$("#logo").css("width", w);
 }
-
-function init()
+function setPopoverFlag()
 {
-	var curtime;
-	var tout;
-	var lock=false;
-	let car=new CarouselClass(60, 70);
-	//init onload sequence
-	//basicIntel();
-	$("[data-toggle=popover]").popover({//lebo predtym nieje istota, ze element existuje
-				html: true,
-				content: function()
-				{
-					return $("#login-form").html();
-				}
-			});
-	    	$("#login").popover();
-	heurLo();	
-	car.carusResponsive();
-	carusSlide();
-	adjustPadding();
-	progressBarMeasurement();
-	eventDispatcher(window);
-    window.addEventListener('resize', function f()//pozor na vnorene volania
-    {
-    	adjustPadding();
-		car.carusResponsive();
-		progressBarMeasurement();
-		setTimeout(() => {adjustPadding(); car.carusResponsive()}, 200);//pretoze firefox aj chrom neustale spustaju event resize
-    });
-    window.addEventListener('scroll', () => 
-    {
-    	progressBarMeasurement();
-    });
+	if(!popoverClicked)
+	{
+		popoverClicked=true;
+	}
+	else
+	{
+		popoverClicked=false;
+	}
 }
-function initArticles()//pre clanky a docy s menej narocnym obsahom
+function navbarCorrection()
 {
-	var curtime;
-	var tout;
-	var lock=false;
-	let car=new CarouselClass(97, 70);
-	$("[data-toggle=popover]").popover({
-				html: true,
-				content: function()
-				{
-					return $("#login-form").html();
-				}
-			});
-	$("#login").popover();
-	heurLo();	
-	car.carusResponsive();
+	if((window.innerWidth <= 1195) && (clickFlag==true))
+	{
+		if(popoverClicked)
+		{
+			console.log("deactivating");
+			$("#login").click();	
+		}
+		$("#bars").trigger('click');
+	}
+}
+function resEvH()
+{
+	console.log("handler called");
 	adjustPadding();
+	car.carusResponsive();
 	progressBarMeasurement();
-	eventDispatcher(window);
-    window.addEventListener('resize', function f()//pozor na vnorene volania
-    {
-    	adjustPadding();
-		car.carusResponsive();
-		progressBarMeasurement();
-		setTimeout(() => {adjustPadding(); car.carusResponsive()}, 200);
-    });
-   	window.addEventListener('scroll', () => 
-    {
-    	progressBarMeasurement();
-    });
+	if(document.getElementById("gallery")!=null)//ak existuje galeria
+	{
+		respInitializer();
+	}
+	setTimeout(() => {adjustPadding(); car.carusResponsive()}, 200);//pretoze firefox aj chrom neustale spustaju event resize
+}
+function registerHandlers(carouselObj)
+{
+	car=carouselObj;
+	console.log("handlery inicializovane")
+	window.addEventListener('resize', resEvH);
+	window.addEventListener('scroll', () => 
+	{
+	   	progressBarMeasurement();
+	   	navbarCorrection();
+	});
 }

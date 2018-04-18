@@ -21,11 +21,20 @@ $(document).ready(
     	$("body").addClass("back")
     	if(meno.indexOf("html/")!=-1)
     	{
-    		initArticles();
+    		//initArticles();
+    		if(meno.indexOf("gal")!=-1)
+    		{
+    			new SparkGal(97, 70);
+    		}
+    		else
+    		{
+    			new SparkArticle(97, 70);	
+    		}
     	}
     	else 
     	{
-    		init();
+    		//init();
+    		new Spark();
     	}
     	/*
     	 * decomissioned branch for later rework 

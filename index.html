@@ -12,6 +12,7 @@
 			<!-- axios -->
 			<script src="https://github.com/axios/axios/tree/master/dist/axios.js"></script>
 			<!-- custom JS files -->
+			<script src="js/Spark.js"></script>
 			<script src="js/inner_mechanics.js"></script>
 			<script src="js/validation.js"></script>
 			<script src="js/mechanics.js"></script>
@@ -71,19 +72,19 @@
 				    				</span>
 				    			</a>
 				    			<ul class="dropdown-menu"><!-- to be done -->
-				    				<li><span><img id="refe" src="img/references.png" alt="references"/><a href="#">Referrences</a></span></li>
-				    				<li><span><img id="ninety" src="img/90s.png" alt="nineties"/><a href="#">90's websites</a></span></li>
-				    				<li><span><img id="gms" src="img/cd.png" alt="games"/><a href="#">Games</a></span></li>
+				    				<li><span><img id="refe" src="img/references.png" alt="references"/><a href="#">90's websites</a></span></li>
+				    				<li><span><img id="ninety" src="img/90s.png" alt="nineties"/><a href="#">Music</a></span></li>
+				    				<li><span><img id="gms" src="img/cd.png" alt="games"/><a href="html/games-gal.html">Games</a></span></li>
 				    			</ul>
 				    		</li>
 				    	</ul>
 				    	<ul class="nav navbar-nav navbar-right arcade-font"><!-- neskor s tym bude interagovat JS -->
 				    		<!-- could this be a popover? -->
 				    		<li><a href="#" id="login" class="beon vertical-separator-right" data-container="body" data-toggle="popover" title="Enter Credentials" 
-				    			data-placement="bottom" >
+				    			data-placement="bottom" onclick="setPopoverFlag()">
 				    				Log In <span class="glyphicon glyphicon-log-in"></span></a>
 				    		</li>
-				    		<li><a onclick="initModal()" id="register" href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
+				    		<li><a onclick="initModal();navbarCorrection()" id="register" href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
 				    	</ul>
 				    	<div id="login-form" class="hide">
 					    	<form class="navbar-form navbar-left">

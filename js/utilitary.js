@@ -27,3 +27,17 @@ function getScrollSize()//velkost plochy, kt. zabera dokument
 	let bod=document.body;
 	return Math.max(doc.clientHeight, doc.scrollHeight, doc.offsetHeight, bod.scrollHeight, bod.offsetHeight);
 }
+function listEvents(elem)
+{
+	var v;
+	var buffer=[];
+	for(v in elem)
+	{
+		if(new RegExp("^(on){1}([a-zA-Z0-9])+$").test(String(v))==true)
+		{
+			//console.log("V: " + v);
+			buffer.push(v);
+		}
+	}
+	return buffer;
+}

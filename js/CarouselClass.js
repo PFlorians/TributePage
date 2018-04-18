@@ -44,6 +44,7 @@ class CarouselClass
 	}
 	carusResponsive()//zaisti logiku za responzivitou
 	{
+		console.log("called carus responsive");
 		this._w = (window.innerWidth/100)*this._width;
 		this._h = (window.innerHeight/100)*this._height;
 		this._stylehseet = null;

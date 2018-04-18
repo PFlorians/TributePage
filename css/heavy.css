@@ -1,3 +1,4 @@
+
 .back
 {
 	background-image: url(../img/sunset_2.svg);
@@ -38,13 +39,11 @@
 	left: 0;
 }
 /*fonts go here*/
-@font-face/*explorer*/
-{
-	font-family: "Neon Pixel-7";
-	src: url("../fonts/neon_pixel-7.eot");
-}
 @font-face
 {
 	font-family: "Neon Pixel-7";
-	src: url("../fonts/neon_pixel-7.ttf");
+	src: url("neon_pixel-7.eot"); 
+	src: url("../fonts/neon_pixel-7.eot?#iefix") format("eot"),
+		 url("../fonts/neon_pixel-7.ttf") format("truetype");
+	font-style: normal;
 }

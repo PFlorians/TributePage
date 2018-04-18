@@ -191,12 +191,6 @@ ul.vlavo > li > p
 }
 .carousel img
 {
-	min-width: 100%;
-	max-width: none;
+	/*min-width: 100%;
+	max-width: none;*/
 }
-
-/*.separation table
-{
-	margin: 40px;
-}
-*/

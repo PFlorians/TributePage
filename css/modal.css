@@ -2,7 +2,7 @@
 .modal
 {
 	display: none;/*az onclick*/
-	background-color: rgba(0,0,0,0.5);/*polocierna*/
+	background-color: rgba(0,0,0,0.6);/*polocierna*/
 	z-index: 100;
 	left: 0;
 	top: 0;
@@ -14,6 +14,8 @@
 	animation-delay: 1s;
 	-webkit-animation-name: objavenie;
 	-webkit-animation-delay: 1s; 
+	animation-timing-function: ease-in;
+	-webkit-animation-timing-function: ease-in;
 }
 .modal-cont
 {
@@ -138,9 +140,10 @@
 }
 .paraInlineModal
 {
-	display: inline;
+	display: block;
 	font-weight: bold;
 	font-size: 16pt;
+	padding-left: 0%;
 	color: #27f4e3;
 }
 @keyframes objavenie
