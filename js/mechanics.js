@@ -4,7 +4,7 @@
 $(document).ready(
 	function()
     {	
-    	console.log("static-variant");
+    	//console.log("static-variant");
     	var content=[];//zbiera nacitany obsah
     	var tmpObj="";//docasna premenna na objekt
     	//funkcne vars

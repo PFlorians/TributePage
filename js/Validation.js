@@ -20,14 +20,10 @@ function validatePasswdChars(src)
 {
 	let inp=src.value;
 	pass1=src.value;
-	console.log("chars called");
+	//console.log("chars called");
 	if(/[a-zA-Z0-9\.\\\/\-\,\?\!\_\]\[]/.test(String(inp)) == false)
 	{
 		$("#passwd1Err").removeClass("hide");
-	}
-	else
-	{
-		console.log("validne");
 	}
 }
 function validatePasswdMatch(src)
@@ -60,7 +56,7 @@ function hidePassw1Err()
 }
 function hidePassw2Err()
 {
-	console.log("match: " + $("#passwd2ErrMatch").hasClass("hide") + " chars: " + $("#passwd2Err").hasClass("hide"));
+	//console.log("match: " + $("#passwd2ErrMatch").hasClass("hide") + " chars: " + $("#passwd2Err").hasClass("hide"));
 	if($("#passwd2Err").hasClass("hide"))
 	{
 		if($("#passwd2ErrMatch").hasClass("hide")==false)

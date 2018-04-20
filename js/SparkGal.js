@@ -3,7 +3,7 @@ class SparkGal extends Spark
 	init()//mutacia pre galerie
 	{
 		this._car=new CarouselClass(super.getW(), super.getH());
-		console.log("velkost carus: " + super.getW() + " h: " + super.getH());
+	//	console.log("velkost carus: " + super.getW() + " h: " + super.getH());
 		$("[data-toggle=popover]").popover({
 					html: true,
 					content: function()

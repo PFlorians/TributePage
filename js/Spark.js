@@ -5,7 +5,7 @@ class Spark
 		this._w=w;
 		this._h=h;
 		this._instance=this;
-		console.log("carousel w: " + this._w + " h: " + this._h );
+		//console.log("carousel w: " + this._w + " h: " + this._h );
 		this.init();
 	}
 	init()

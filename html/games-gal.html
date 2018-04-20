@@ -15,6 +15,7 @@
 			<script src="../js/gallery.js"></script>
 			<script src="../js/Spark.js"></script>
 			<script src="../js/SparkGal.js"></script>
+			<script src="../js/Validation.js"></script>
 			<script src="../js/inner_mechanics.js"></script>
 			<script src="../js/mechanics.js"></script>
 			<script src="../js/utilitary.js"></script>
@@ -73,8 +74,8 @@
 		    					</a>
 		    						<ul class="dropdown-menu"><!-- to be done -->
 					    				<li><span><img id="refe" src="../img/references.png" alt="references"/><a href="#">90's websites</a></span></li>
-					    				<li><span><img id="ninety" src="../img/90s.png" alt="nineties"/><a href="#">Music</a></span></li>
-					    				<li><span><img id="gms" src="../img/cd.png" alt="games"/><a href="#">Games</a></span></li>
+					    				<li><span><img id="ninety" src="../img/90s.png" alt="nineties"/><a href="music-gal.html">Music</a></span></li>
+					    				<li><span><img id="gms" src="../img/cd.png" alt="games"/><a href="games-gal.html">Games</a></span></li>
 					    			</ul>
 		    					<!--</a>-->
 		    				</li>
@@ -108,51 +109,51 @@
 	    	<div class="row"> 
 	    		<!-- SW carus -->
 	    		<!-- carousel -->
-		   		<div id="carusSW" class="carousel slide col-lg-12 col-md-12 col-sm-12 col-xs-12 fade-out" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000> 
+		   		<div id="carusGames" class="carousel slide col-lg-12 col-md-12 col-sm-12 col-xs-12 fade-out" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000> 
 					<!-- indikatory -->
 					<ol class="carousel-indicators">
-						<li data-target="#carusSW" data-slajd-to="0" class="active"></li>
-						<li data-target="#carusSW" data-slajd-to="1" ></li>
-						<li data-target="#carusSW" data-slajd-to="2" ></li>
-						<li data-target="#carusSW" data-slajd-to="3" ></li>
+						<li data-target="#carusGames" data-slide-to="0" class="active"></li>
+						<li data-target="#carusGames" data-slide-to="1" ></li>
+						<li data-target="#carusGames" data-slide-to="2" ></li>
+						<li data-target="#carusGames" data-slide-to="3" ></li>
 					</ol>
 					<!-- data items -->
 					<div class="carousel-inner" role="listbox" id="imgsCar">
-						<div class="item active" style="background-image: url(../img/nc.png);">
-							<img src="../img/nc.png" alt="Norton Commander"/>
+						<div class="item active" style="background-image: url(../img/ptimce0.PNG);">
+							<img src="../img/ptimce0.PNG" alt="Prince of persia"/>
 							<div class="carousel-caption">
-								<h3 class="hilight">Norton Commander - </h3>
-								<p class="hilight">Highly popular file manager</p>
+								<h3 class="hilight">Prince of persia - </h3>
+								<p class="hilight">Well known DOS game</p>
 							</div>
 						</div>
-						<div class="item" style="background-image: url(../img/win3.png);">
-							<img src="../img/win3.png" alt="win 3.1"/>
+						<div class="item" style="background-image: url(../img/zork.PNG);">
+							<img src="../img/zork.PNG" alt="zork"/>
 							<div class="carousel-caption">
-								<h3 class="hilight">Windows 3.1 - </h3>
-								<p class="hilight">An OS built upon MS-DOS</p>
+								<h3 class="hilight">Zork 1981 - </h3>
+								<p class="hilight"> One of the first games</p>
 							</div>
 						</div>
-						<div class="item" style="background-image: url(../img/paradox.png);">
-							<img src="../img/paradox.png" alt="paradox"/>
+						<div class="item" style="background-image: url(../img/chess.PNG);">
+							<img src="../img/chess.PNG" alt="battle chess"/>
 							<div class="carousel-caption">
-								<h3 class="hilight">Paradox 4.0 - </h3>
-								<p class="hilight">An old relational Database</p>
+								<h3 class="hilight">Battle Chess - </h3>
+								<p class="hilight">Classic chess game</p>
 							</div>
 						</div>
-						<div class="item" style="background-image: url(../img/DeskMate.png);">
-							<img src="../img/DeskMate.png" alt="desk mate"/>
+						<div class="item" style="background-image: url(../img/startrek.PNG);">
+							<img src="../img/startrek.PNG" alt="Star trek"/>
 							<div class="carousel-caption">
-								<h3 class="hilight">Desk Mate- </h3>
-								<p class="hilight">MS-DOS planner/organizer</p>
+								<h3 class="hilight">Star trek - </h3>
+								<p class="hilight">Based on popular tv show</p>
 							</div>
 						</div>
 					</div>
 					<!-- ovladace -->
-					<a class="left carousel-control" href="#carusSW" role="button" data-slajd="prev">
+					<a class="left carousel-control" href="#carusGames" role="button" data-slide="prev">
 						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 						<span class="sr-only">Previous</span>
 					</a>
-					<a class="right carousel-control" href="#carusSW" role="button" data-slajd="next">
+					<a class="right carousel-control" href="#carusGames" role="button" data-slide="next">
 						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 						<span class="sr-only">Next</span>
 					</a>
@@ -197,7 +198,8 @@
 					</div>
 				</div>
 			</div>
-			
+			<hr/>
+			<h2 class="arcade-font-prince centrovanie">Gallery</h2>
 			<div class="row">
 				<div id="gallery" class="mriezka">
 	    			<div class="grid-responsive-sizer"></div>
@@ -260,33 +262,6 @@
 	    			<a class="prv" onclick="prv()">&#10094;</a>
     				<a class="nxt" onclick="nxt()">&#10095;</a>
 	    		</div>
-	    		<!-- list obrazkov nizsie -->
-	    		<!--<div id="smallGrid" class="mriezka">
-	    			<div class="grid-item">
-	    				<img class="img-normal" src="../img/games-gal/hotline1.PNG" alt="hotline1"/>
-	    			</div>
-	    			<div class="grid-item">
-	    				<img class="img-normal" src="../img/games-gal/hotline2.PNG" alt="hotline2"/>
-	    			</div>
-	    			<div class="grid-item">
-	    				<img class="img-normal" src="../img/games-gal/hotline3.jpg" alt="hotline3"/>
-	    			</div>
-	    			<div class="grid-item" >
-	    				<img class="img-normal" src="../img/games-gal/kung-fury-logo.jpg" alt="kung-fury"/>
-	    			</div>
-	    			<div class="grid-item">
-	    				<img class="img-normal" src="../img/games-gal/magnatron1.jpg" alt="magnatron1"/>
-	    			</div>
-	    			<div class="grid-item">
-	    				<img class="img-normal" src="../img/games-gal/magnatron2.jpg" alt="magnatron2"/>
-	    			</div>
-	    			<div class="grid-item">
-	    				<img class="img-normal" src="../img/games-gal/retro-futur-05.jpg" alt="retrofutur"/>
-	    			</div>
-	    			<div class="grid-item">
-	    				<img class="img-normal" src="../img/games-gal/miami-touh-03.jpg" alt="miami-touch"/>
-	    			</div>
-	    		</div>-->
 	    	</div>
 		</article>
 		<footer class="footer" id="footer">

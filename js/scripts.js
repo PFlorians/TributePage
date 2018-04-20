@@ -240,7 +240,7 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 		tmpElem.innerHTML="Assembly, BCPL, C";	
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
-		j=0;
+		/*j=0;
 		elems.push(document.createElement("tr"));//row 6 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
@@ -251,7 +251,7 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
 		tmpElem.innerHTML="Closed";	
 		elems[elems.length-1].appendChild(tmpElem);
-		i++;
+		i++;*/
 		for(k=0;k<elems.length;k++)
 		{
 			tab.appendChild(elems[k]);
@@ -431,7 +431,7 @@ function heurLo()//heuristika podla kontajnera hlavicka
 	$("#layer2").css("width", 0);
 	var w=($("#hlavicka").width()/100)*11;
 	var h=($("#hlavicka").height()/100)*80;
-	console.log("vypocital som: " + w + " h: " + h);
+	//console.log("vypocital som: " + w + " h: " + h);
 	$("#layer1").css("height", h);
 	$("#layer1").css("width", w);
 	$("#layer2").css("height", h);
@@ -449,7 +449,7 @@ function heurSpLo()//specialny pripad, nhead kontajner
 	$("#layer2").css("width", 0);
 	var w=($("#nhead").width()/100)*70;
 	var h=($("#nhead").height()/100)*90;
-	console.log("vypocital som: " + w + " h: " + h);
+	//console.log("vypocital som: " + w + " h: " + h);
 	$("#layer1").css("height", h);
 	$("#layer1").css("width", w);
 	$("#layer2").css("height", h);
@@ -482,7 +482,7 @@ function navbarCorrection()
 }
 function resEvH()
 {
-	console.log("handler called");
+	//console.log("handler called");
 	adjustPadding();
 	car.carusResponsive();
 	progressBarMeasurement();
@@ -495,7 +495,7 @@ function resEvH()
 function registerHandlers(carouselObj)
 {
 	car=carouselObj;
-	console.log("handlery inicializovane")
+	//console.log("handlery inicializovane")
 	window.addEventListener('resize', resEvH);
 	window.addEventListener('scroll', () => 
 	{

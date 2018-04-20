@@ -1,6 +1,7 @@
 /*pozadie modal okna*/
 .modal
 {
+	overflow: hidden !important;
 	display: none;/*az onclick*/
 	background-color: rgba(0,0,0,0.6);/*polocierna*/
 	z-index: 100;

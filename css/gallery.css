@@ -63,7 +63,7 @@
 }
 .gallery-modal-container
 {
-	overflow: hidden;/*ak by obsah pretiekol box*/
+	overflow: scroll;/*ak by obsah pretiekol box*/
 	z-index: 101;
 	margin-top: 10%;
 	margin-bottom: 15%;
@@ -76,7 +76,7 @@
 }
 .gallery-modal-container-mini
 {
-	overflow: hidden;/*ak by obsah pretiekol box*/
+	overflow: scroll;/*ak by obsah pretiekol box*/
 	z-index: 101;
 	margin-top: 15%;
 	margin-bottom: 15%;
@@ -149,8 +149,4 @@
 {
 	color: #c9cccb;
 	cursor: pointer;
-}
-@media only all and (width<756)
-{
-	background-image: "";
 }

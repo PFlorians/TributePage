@@ -20,10 +20,11 @@ class SparkArticle extends Spark
 		adjustPadding();
 		progressBarMeasurement();
 		eventDispatcher(window);
-	    window.addEventListener('resize', super.resizeEventHandler());
+		registerHandlers(this._car);
+	    /*window.addEventListener('resize', super.resizeEventHandler());
 	   	window.addEventListener('scroll', () => 
 	    {
 	    	progressBarMeasurement();
-	    });
+	    });*/
 	}
 }

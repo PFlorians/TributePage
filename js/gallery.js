@@ -66,7 +66,7 @@ function initImgs()//volat raz, inicializuje obrazkovy buffer
 {
 	imgs=$("#gallery > .grid-item > .img-normal");
 	imageBuffer1=[];//keby nieco
-	console.log("init imgs");
+	//console.log("init imgs");
 	for(let i=0; i<imgs.length;i++)//aby neskoncilo i v bufferi vseob vars
 	{
 		if(imgs[i].tagName.indexOf("IMG") != -1)
@@ -85,19 +85,19 @@ function initImgs()//volat raz, inicializuje obrazkovy buffer
 function nxt()
 {
 	counterIndex+=1;
-	console.log("index nxt: " + counterIndex);
+	//console.log("index nxt: " + counterIndex);
 	showSlide(counterIndex, 1);
 }
 function prv()
 {
 	counterIndex-=1;
-	console.log("index prv: " + counterIndex);
+	//console.log("index prv: " + counterIndex);
 	showSlide(counterIndex, 0);
 }
 function current(index)//kliknem na img
 {
 	counterIndex=index;
-	console.log("klikol som na obrazok cislo: " + counterIndex);
+	//console.log("klikol som na obrazok cislo: " + counterIndex);
 	showSlide(counterIndex);
 }
 /*
@@ -108,7 +108,7 @@ function current(index)//kliknem na img
 var tmp;
 function showSlide(index, direction=-1)
 {
-	console.log("slide: " + index);
+	//console.log("slide: " + index);
 	var disappearing;
 	var following;
 	//console.log(following);
