@@ -54,6 +54,7 @@ function hidePassw1Err()
 {
 	$("#passwd1Err").addClass("hide");
 }
+//backup check
 function hidePassw2Err()
 {
 	//console.log("match: " + $("#passwd2ErrMatch").hasClass("hide") + " chars: " + $("#passwd2Err").hasClass("hide"));
@@ -76,4 +77,13 @@ function hidePassw2Err()
 			$("#passwd2ErrMatch").addClass("hide");
 		}
 	}
+}
+//submit call all
+function validateAll()
+{
+	validateName(document.getElementById("uname"));
+	validateMail(document.getElementById("mail"));
+	validatePasswdChars(document.getElementById("passwd1"));
+	validatePasswdChars(document.getElementById("passwd2"));
+	validatePasswdMatch(document.getElementById("passwd2"));
 }

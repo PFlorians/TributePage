@@ -188,11 +188,11 @@ In 2008, First Second Books published a Prince of Persia graphic novel - not a n
 						<div id="psdoCntnr" class="modal-cont">
 							<p class="paraInlineModal">Register</p>
 							<span class="clsBtn" id="clsModal" onclick="closeModal()">&times;</span>
-							<form id="modalFrm" class="frmStlng">
+							<form id="regFrm" class="frmStlng">
 								<!-- username -->
 								<label for="uname">Username</label>
 								<input type="text" id="uname" onblur="validateName(this)" onfocus="hideUnameErr()" placeholder="Enter username"/>
-								<label for="uname" class="hide errLbl" id="chybaUname">Error Username has to be filled in</label>
+								<label for="uname" class="hide errLbl" id="chybaUname">Error Username has to be filled</label>
 								<!-- email -->
 								<label for="mail">E-mail</label>
 								<input type="email" id="mail" onblur="validateMail(this)" onfocus="hideMailErr()" placeholder="mail@domain.com"/>
@@ -203,9 +203,9 @@ In 2008, First Second Books published a Prince of Persia graphic novel - not a n
 								<label for="passwd1" id="passwd1Err" class="hide errLbl">Error passwd can use only: a-z, A-Z, 0-9, .,-\/?!][</label>
 								<!-- password 2 -->
 								<label for="passwd2">Repeat password</label>
-								<input type="password" onblur="validatePasswdMatch(this)" onfocus="hidePassw2Err()" id="passwd2"/>
+								<input type="password" onblur="validatePasswdChars(this); validatePasswdMatch(this)" onfocus="hidePassw2Err()" id="passwd2"/>
 								<label for="passwd2" id="passwd2Err" class="hide errLbl">Error passwd can use only: a-z, A-Z, 0-9, .,-\/?!][</label>
-								<label for="passwd2" id="passwd2ErrMatch" class="hide errLbl">Error passwords must be identical[</label>
+								<label for="passwd2" id="passwd2ErrMatch" class="hide errLbl">Error passwords must be identical</label>
 								<!-- gender -->
 								<fieldset name="gender">
 									<legend>Pick a Gender</legend>
@@ -215,12 +215,13 @@ In 2008, First Second Books published a Prince of Persia graphic novel - not a n
 									<label for="female">Female</label>
 									<input type="radio" id="female" name="gender"/>
 								</fieldset>
-								<input type="submit" class="btn btn-primary" value="Submit"/>
+								<input type="submit" class="btn btn-primary" value="Submit" onclick="validateAll()"/>
 								
 							</form>
 						</div>
 					</div>
 				</div>
+			<!-- end frm -->
 	    	</article>
 	    	<footer class="footer" id="footer">
 		       	<hr/>

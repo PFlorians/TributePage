@@ -204,7 +204,7 @@
 						<div id="psdoCntnr" class="modal-cont">
 							<p class="paraInlineModal">Register</p>
 							<span class="clsBtn" id="clsModal" onclick="closeModal()">&times;</span>
-							<form id="modalFrm" class="frmStlng">
+							<form id="regFrm" class="frmStlng">
 								<!-- username -->
 								<label for="uname">Username</label>
 								<input type="text" id="uname" onblur="validateName(this)" onfocus="hideUnameErr()" placeholder="Enter username"/>
@@ -219,9 +219,9 @@
 								<label for="passwd1" id="passwd1Err" class="hide errLbl">Error passwd can use only: a-z, A-Z, 0-9, .,-\/?!][</label>
 								<!-- password 2 -->
 								<label for="passwd2">Repeat password</label>
-								<input type="password" onblur="validatePasswdMatch(this)" onfocus="hidePassw2Err()" id="passwd2"/>
+								<input type="password" onblur="validatePasswdChars(this); validatePasswdMatch(this)" onfocus="hidePassw2Err()" id="passwd2"/>
 								<label for="passwd2" id="passwd2Err" class="hide errLbl">Error passwd can use only: a-z, A-Z, 0-9, .,-\/?!][</label>
-								<label for="passwd2" id="passwd2ErrMatch" class="hide errLbl">Error passwords must be identical[</label>
+								<label for="passwd2" id="passwd2ErrMatch" class="hide errLbl">Error passwords must be identical</label>
 								<!-- gender -->
 								<fieldset name="gender">
 									<legend>Pick a Gender</legend>
@@ -231,7 +231,7 @@
 									<label for="female">Female</label>
 									<input type="radio" id="female" name="gender"/>
 								</fieldset>
-								<input type="submit" class="btn btn-primary" value="Submit"/>
+								<input type="submit" class="btn btn-primary" value="Submit" onclick="validateAll()"/>
 								
 							</form>
 						</div>

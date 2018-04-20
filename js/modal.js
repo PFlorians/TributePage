@@ -18,7 +18,7 @@ function closeModal()
 }
 window.onclick = (event)=> {
 	//	console.log(event.target);
-	//	console.log(event.target.id.indexOf("modal"));
+	//	console.log(event.target.id);
 		if(event.target==modal || (event.target.id.indexOf("modal")!=-1))
 		{
 			var a=document.getElementsByClassName("modal");

@@ -186,7 +186,7 @@ function imageDetector(index)
 {
 	var smallGrid = $("#modalGallery > #galleryContent > .slajd > .img-gal");
 	var imageBuffer2=[];
-	console.log("index detector: " + index);
+	//console.log("index detector: " + index);
 	//pretoze uzly obrazky v druhej mnozine mozu byt inak usporiadane
 	for(let i=0;i<smallGrid.length;i++)
 	{	
