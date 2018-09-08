@@ -51,21 +51,41 @@
 {
 	font-family: 'HiRegular';
 	color: #2bef00 !important;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
 }
 .arcade-font
 {
 	font-family: 'PressStart2PRegular';
 	color: #f7a009 !important;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
 }
 .arcade-font-prince
 {
 	font-family: 'PressStart2PRegular';
 	color: /*#ffebaa*/#e3a200 !important;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
 }
 .beon
 {
 	font-family: 'BeonRegular'; 
 	color: #ff00c7 !important;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
 }
 h3.beon.centrovanie /* formatovanie pre nadpisy */
 {
@@ -82,10 +102,23 @@ h3.arcade-font-prince.centrovanie /* formatovanie pre nadpisy */
 {
 	font-family: 'BeonRegular'; 
 	color: #2bef00 !important;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
 }
 h4.beon-neon/*nadpisy 4 urovne*/
 {
 	font-size: 20pt;
+}
+p.lemovanie
+{
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
 }
 /*koniec fontovy tried*/
 /*tajny widget*/

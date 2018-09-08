@@ -7,11 +7,28 @@ $(document).ready(
     	//console.log("static-variant");
     	var content=[];//zbiera nacitany obsah
     	var tmpObj="";//docasna premenna na objekt
+    	var x;
     	//funkcne vars
     	var meno=window.location.pathname;
     	var pg=meno.split("/").pop();
     	//console.log("strank: " + pg.split(".")[0] + " loca: " + meno);
     	var n=String(pg.split(".")[0]);
+    	x=document.getElementsByTagName("div");
+    	for(var i in x)
+    	{
+    		if(typeof x[i].style != "undefined")
+    		{
+    			if(x[i].style.zIndex==9999999)
+	    		{
+	    			x[i].parentElement.removeChild(x[i]);
+	    			break;
+	    		}	
+    		}
+    		else
+    		{
+    			continue;
+    		}
+    	}
     	
     	//console.log("n: " + n + " nacitavam");
     	if(n=="")//na linuxovych serveroch je to len /
