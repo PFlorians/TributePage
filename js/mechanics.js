@@ -3,8 +3,8 @@
  */
 $(document).ready(
 	function()
-    {	
-    	//console.log("static-variant");
+    {
+    	console.log("static-variant");
     	var content=[];//zbiera nacitany obsah
     	var tmpObj="";//docasna premenna na objekt
     	var x;
@@ -22,14 +22,14 @@ $(document).ready(
 	    		{
 	    			x[i].parentElement.removeChild(x[i]);
 	    			break;
-	    		}	
+	    		}
     		}
     		else
     		{
     			continue;
     		}
     	}
-    	
+
     	//console.log("n: " + n + " nacitavam");
     	if(n=="")//na linuxovych serveroch je to len /
     	{
@@ -45,16 +45,16 @@ $(document).ready(
     		}
     		else
     		{
-    			new SparkArticle(97, 70);	
+    			new SparkArticle(97, 70);
     		}
     	}
-    	else 
+    	else
     	{
     		//init();
     		new Spark();
     	}
     	/*
-    	 * decomissioned branch for later rework 
+    	 * decomissioned branch for later rework
     	 switch(window.location.protocol)
     	{
     		case 'http:':
@@ -70,7 +70,7 @@ $(document).ready(
     			staticVariant();
     			//static variant
     	}*/
-		
+
     }
 );
 function staticVariant()
@@ -84,7 +84,7 @@ function staticVariant()
     	var pg=meno.split("/").pop();
     	//console.log("strank: " + pg.split(".")[0] + " loca: " + meno);
     	var n=String(pg.split(".")[0]);
-    	
+
     	//console.log("n: " + n + " nacitavam");
     	if(n=="")//na linuxovych serveroch je to len /
     	{
@@ -110,7 +110,7 @@ function serverVariant()//if on server only
     	var pg=meno.split("/").pop();
     	//console.log("strank: " + pg.split(".")[0] + " loca: " + meno);
     	var n=String(pg.split(".")[0]);
-    	
+
     	//console.log("n: " + n + " nacitavam");
     	if(n=="")//na linuxovych serveroch je to len /
     	{
@@ -130,7 +130,7 @@ function serverVariant()//if on server only
 	    			//console.log("call1: " + obsah);
 	    				try
 	    				{
-							content.push(pseudoParser(obsah, "headr"));	    					
+							content.push(pseudoParser(obsah, "headr"));
 	    				}
 	    				catch(e)
 	    				{
@@ -139,7 +139,7 @@ function serverVariant()//if on server only
 	    				return loadFileGet(links[1]);//to treba lebo chain chyti undefined
 	    			}).then(obsah => {
 	    				//console.log("call2: " + obsah);
-	    				try 
+	    				try
 	    				{
 		    				content.push(pseudoParser(obsah, "obsah"));
 	    				}
@@ -172,20 +172,20 @@ function serverVariant()//if on server only
 	    	);
 	    	$("body").trigger("load");//volaj event, niekdey sa nespusti
 	    }
-	    else 
+	    else
 	    {
 	    	let links = [
 	    	"html/dynamic-content/header/header.html",
 	    	"html/dynamic-content/"+n+"-body.html",
 	    	"html/dynamic-content/footer/footer_generic.html"
-	    	];	
+	    	];
 	    	$("body").on("load", ()=>{
 	    		loadFileGet(links[0]).then(obsah => {
 	    			//console.log("call1: " + obsah);
 	    				try
 	    				{
 	    					//console.log(obsah);
-							content.push(pseudoParser(obsah, "headr"));	    					
+							content.push(pseudoParser(obsah, "headr"));
 	    				}
 	    				catch(e)
 	    				{
@@ -194,7 +194,7 @@ function serverVariant()//if on server only
 	    				return loadFileGet(links[1]);//to treba lebo chain chyti undefined
 	    			}).then(obsah => {
 	    				//console.log("call2: " + obsah);
-	    				try 
+	    				try
 	    				{
 		    				content.push(pseudoParser(obsah, "obsah"));
 	    				}
@@ -247,7 +247,7 @@ function widget()
 	    				{
 	    					bottom: '0px'
 	    				}, 600, 'linear'
-	    			);	
+	    			);
     			}
     			else
     			{

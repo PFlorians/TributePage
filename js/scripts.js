@@ -8,13 +8,18 @@ var popoverClicked=false;//ci je kliknute na popover
 var car;//instancia carouselu predana z inicializacnej funkcie
 
 //logika progress baru
+function tst()
+{
+	console.log("yes");
+	progressBarMeasurement();
+}
 function progressBarMeasurement()//pre progress bar
 {
 	let viewableW=window.innerWidth;//viditelne okno
 	let viewableH=window.innerHeight;
 	let pb=document.getElementById("progress").children[0];
 	let scrl=getScrollSize();
-	//console.log("scrollSiz: " + scrl + " dockel " + document.documentElement.scrollTop);
+	console.log("scrollSiz: " + scrl + " dockel " + document.documentElement.scrollTop);
 	pb.setAttribute("aria-valuenow", (((document.documentElement.scrollTop + viewableH)/scrl)*100));
 	pb.style.width=(((document.documentElement.scrollTop + viewableH)/scrl)*100) + "%";
 }
@@ -59,7 +64,7 @@ function adjustPadding()
 		    {
 		    	$("body").css("padding-top", 80);
 		    	heurLo();
-		    }	
+		    }
     	}
     	else
     	{
@@ -77,9 +82,9 @@ function adjustPadding()
 		    	heurLo();
 		    }
 	    }
-	    
+
 	}
-	
+
 }
 function temporaryEraseConditions()
 {
@@ -96,7 +101,7 @@ function temporaryEraseConditions()
     	clickFlag=false;
     	$("#hlavicka").css("max-height", 68);
     	$("#nhead").css("max-height", 60);
-    	heurSpLo();	
+    	heurSpLo();
     }
 }
 
@@ -108,7 +113,7 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 	var j=0; //column of data
 	var k; //tmp cycle variable
 	var tmpElem = null;//tmp buffer
-	
+
 	tab=document.getElementById("infoBody");
 	removeChildren(tab);
 	if(ind==0)
@@ -122,55 +127,55 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Prince of Persia";	
+		tmpElem.innerHTML="Prince of Persia";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr")); //row 2 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Year";	
+		tmpElem.innerHTML="Year";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="1989";	
+		tmpElem.innerHTML="1989";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 3 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Platform";	
+		tmpElem.innerHTML="Platform";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="MS-DOS";	
+		tmpElem.innerHTML="MS-DOS";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 4 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Created";	
+		tmpElem.innerHTML="Created";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Jordan Mechner";	
+		tmpElem.innerHTML="Jordan Mechner";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 5 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Genre";	
+		tmpElem.innerHTML="Genre";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Action, Platform";	
+		tmpElem.innerHTML="Action, Platform";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		for(k=0;k<elems.length;k++)
@@ -189,67 +194,67 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Amiga OS";	
+		tmpElem.innerHTML="Amiga OS";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr")); //row 2 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Year released";	
+		tmpElem.innerHTML="Year released";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="1985";	
+		tmpElem.innerHTML="1985";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 3 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Kernel";	
+		tmpElem.innerHTML="Kernel";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Microkernel";	
+		tmpElem.innerHTML="Microkernel";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 4 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Developer";	
+		tmpElem.innerHTML="Developer";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Commodore International";	
+		tmpElem.innerHTML="Commodore International";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 5 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Written in";	
+		tmpElem.innerHTML="Written in";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Assembly, BCPL, C";	
+		tmpElem.innerHTML="Assembly, BCPL, C";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		/*j=0;
 		elems.push(document.createElement("tr"));//row 6 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Source model";	
+		tmpElem.innerHTML="Source model";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Closed";	
+		tmpElem.innerHTML="Closed";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;*/
 		for(k=0;k<elems.length;k++)
@@ -268,55 +273,55 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Turbo Debugger";	
+		tmpElem.innerHTML="Turbo Debugger";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr")); //row 2 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Year released";	
+		tmpElem.innerHTML="Year released";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="1989";	
+		tmpElem.innerHTML="1989";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 3 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Platform";	
+		tmpElem.innerHTML="Platform";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="MS-DOS";	
+		tmpElem.innerHTML="MS-DOS";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 4 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Developer";	
+		tmpElem.innerHTML="Developer";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Borland";	
+		tmpElem.innerHTML="Borland";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 5 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Designed for";	
+		tmpElem.innerHTML="Designed for";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Turbo Assembler";	
+		tmpElem.innerHTML="Turbo Assembler";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		for(k=0;k<elems.length;k++)
@@ -335,55 +340,55 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Windows 3.0";	
+		tmpElem.innerHTML="Windows 3.0";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr")); //row 2 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Year released";	
+		tmpElem.innerHTML="Year released";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="1990";	
+		tmpElem.innerHTML="1990";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 3 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Developer";	
+		tmpElem.innerHTML="Developer";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Microsoft";	
+		tmpElem.innerHTML="Microsoft";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 4 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="License";	
+		tmpElem.innerHTML="License";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Commercial";	
+		tmpElem.innerHTML="Commercial";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 5 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Build upon";	
+		tmpElem.innerHTML="Build upon";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="MS-DOS 6.1 >";	
+		tmpElem.innerHTML="MS-DOS 6.1 >";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		for(k=0;k<elems.length;k++)
@@ -391,13 +396,13 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 			tab.appendChild(elems[k]);
 		}
 	}
-	
+
 }
 //event on carousel slide
 function carusSlide()//vracia index carouselu
 {
 	var cur=0;
-	briefContent(cur);//on initial call 
+	briefContent(cur);//on initial call
 	$(".carousel").on("slid.bs.carousel", function (){
 			cur=$("div.active").index();
 			briefContent(cur);
@@ -475,7 +480,7 @@ function navbarCorrection()
 		if(popoverClicked)
 		{
 			console.log("deactivating");
-			$("#login").click();	
+			$("#login").click();
 		}
 		$("#bars").trigger('click');
 	}
@@ -497,7 +502,7 @@ function registerHandlers(carouselObj)
 	car=carouselObj;
 	//console.log("handlery inicializovane")
 	window.addEventListener('resize', resEvH);
-	window.addEventListener('scroll', () => 
+	window.addEventListener('scroll', () =>
 	{
 	   	progressBarMeasurement();
 	   	navbarCorrection();

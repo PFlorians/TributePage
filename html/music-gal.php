@@ -24,91 +24,72 @@
 			<!-- vlastny skompilovany bootstrap -->
 			<link rel="stylesheet" href="../css/bootstrap3.3.7_v2/css/bootstrap.min.css"/>
 			<!-- vlastny JS zo skompilovaneho bootstrapu -->
-			<script src="../css/bootstrap3.3.7_v2/js/bootstrap.min.js"></script> 
-		
+			<script src="../css/bootstrap3.3.7_v2/js/bootstrap.min.js"></script>
+
 			<!-- custom css -->
 	       	<link rel="stylesheet" href="../css/frickles.css"/>
 	       	<link rel="stylesheet" href="../css/heavy.css"/>
 			<link rel="stylesheet" href="../css/modal.css"/>
 			<link rel="stylesheet" href="../css/gallery.css"/>
 		<!-- configuration and misc references -->
-			
+
 			<!-- follow device width, initial zoom level -->
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!-- fonts defined here-->
-	 		<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/hi" type="text/css"/> 
+	 		<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/hi" type="text/css"/>
 	 		<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/press-start-2p" type="text/css"/>
-	        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/beon" type="text/css"/> 
-	        
+	        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/beon" type="text/css"/>
+            <?php
+                spl_autoload_register(//terror itself
+                        function($clName)
+                        {
+                            //echo 'Autoload HTML: ' . $clName.PHP_EOL;
+                            if(strtoupper(substr(PHP_OS, 0, 3)) === "WIN")
+                            {//cesty su v tvare '\'
+                                $path="\\";
+                            }
+                            else
+                            { //something else, lets hope its UNIX based
+                                //opacne lomitko
+                                $path="/";
+                            }//php is constant everywhere
+                            if(file_exists(dirname(__DIR__).$path."php".$path. $clName . ".php"))
+                            {
+                            //    echo 'Exists '.PHP_EOL;
+                                   require_once(dirname(__DIR__).$path."php".$path. $clName .".php");
+                            }
+                            else
+                            {
+                                throw new Exception("Error trying to load file(html): " . $clName . ".php", 1000);
+                            }
+                        }
+                    );
+                    try {
+                        $util=new Util();//this must be global & accessible for every object using dependency injection
+                    } catch (Exception $e) {
+                        echo 'Initial HTML error: ' .$e;
+                    }
+             ?>
        	<!-- rest of head section -->
         <title>Music</title>
     </head>
-    <body id="telo"> 
-    	<header class="page-header" id="headr"> <!-- komplet cely header moze byt dynamicky linkovany -->
-	    		<nav class="navbar navbar-inverse navbar-fixed-top bottom-margin" id="hlavicka">
-	    			<div id="nhead" class="navbar-header"><!-- dolezite koli mechanike 3-bar spuste -->
-	    				<button class="navbar-toggle pull-left aux-navbar-left" onclick="temporaryEraseConditions()" data-toggle="collapse" data-target="#mainNav" id="bars">
-		    				<span class="icon-bar"></span>
-		    				<span class="icon-bar"></span>
-		    				<span class="icon-bar"></span>
-	    				</button>
-	    				<!--<section class="vertical-separator-right">-->
-	    				<a class="navbar-left" > 
-	    					<object type="image/svg+xml" data="../img/floppy.svg" id="logo">
-	    						Objects not supported in your browser	
-	    					</object>
-	    				</a>
-	    				<!--</section>-->
-	    			</div>
-	    			<div class="collapse navbar-collapse " id="mainNav">
-		    			<ul class="nav navbar-nav arcade-font"> 
-		    				<li class="vertical-separator-left"><a href="../index.html">Home</a></li>	
-		    				<li ><a href="about.html">About</a></li>
-		    				<li ><a href="software.html">Software</a></li>
-		    				<li class="dropdown">
-		    					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-		    						Miscellanous
-		    						<span class="caret">
-		    						</span>
-		    					</a>
-		    						<ul class="dropdown-menu"><!-- to be done -->
-					    				<li><span><img id="refe" src="../img/references.png" alt="references"/><a href="#">90's websites</a></span></li>
-					    				<li><span><img id="ninety" src="../img/90s.png" alt="nineties"/><a href="music-gal.html">Music</a></span></li>
-					    				<li><span><img id="gms" src="../img/cd.png" alt="games"/><a href="games-gal.html">Games</a></span></li>
-					    			</ul>
-		    					<!--</a>-->
-		    				</li>
-		    			</ul>
-		    			<ul class="nav navbar-nav navbar-right arcade-font"><!-- neskor s tym bude interagovat JS -->
-		    				<!-- could this be a popover? -->
-		    				<li><a href="#" id="login" class="beon vertical-separator-right" data-container="body" data-toggle="popover" title="Enter Credentials" 
-		    					data-placement="bottom" >
-		    						Log In <span class="glyphicon glyphicon-log-in"></span></a>
-		    				</li>
-		    				<li><a onclick="initModal()" id="register" href="#"  class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
-		    			</ul>
-		    			<div id="login-form" class="hide">
-			    			<form class="navbar-form navbar-left">
-			    				<div class="form-group">
-				    				<input type="text" class="form-control" maxlength ="4" placeholder="username"/>
-				    				<input type="password" class="form-control" maxlength="4" placeholder="password"/><br/>
-				    				<button type="submit" class="btn btn-primary">Submit</button>
-			    				</div>
-			    			</form>
-		    			</div>
-	    			</div>
-	    			<div class="progress thin-progressbar" id="progress"><!-- need to overload in .css file -->
-	    				<span class="progress-bar pb-details" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" role="progressbar">
-	    				</span>
-	    			</div>
-	    		</nav>
-	    	</header>
+    <body id="telo">
+        <?php
+            try
+            {
+                new GeneralHeader($util);
+            }
+            catch (Exception $e)
+            {
+                echo 'Error loading header - prince: ' . $e;
+            }
+         ?>
 	    <article class="container-fluid">
 	    	<h3 class="arcade-font-prince centrovanie">Retro Games</h3>
-	    	<div class="row"> 
+	    	<div class="row">
 	    		<!-- SW carus -->
 	    		<!-- carousel -->
-		   		<div id="carusMusic" class="carousel slide col-lg-12 col-md-12 col-sm-12 col-xs-12 fade-out" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000> 
+		   		<div id="carusMusic" class="carousel slide col-lg-12 col-md-12 col-sm-12 col-xs-12 fade-out" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000>
 					<!-- indikatory -->
 					<ol class="carousel-indicators">
 						<li data-target="#carusMusic" data-slide-to="0" class="active"></li>
@@ -119,16 +100,16 @@
 					<!-- data items -->
 					<div class="carousel-inner" role="listbox" id="imgsCar">
 						<div class="item active" style="background-image: url(../img/scandroid.jpg);">
-							<img src="../img/scandroid.jpg" alt="Scandroid"/>
+							<img src=<?php echo $util->getSelfRoot().$util::img.$util->getRelativeAddressingChar()."scandroid.jpg"?> alt="Scandroid"/>
 						</div>
 						<div class="item" style="background-image: url(../img/trevor.jpg);">
-							<img src="../img/trevor.jpg" alt="Trevor something"/>
+							<img src=<?php echo $util->getSelfRoot().$util::img.$util->getRelativeAddressingChar()."trevor.jpg"?> alt="Trevor something"/>
 						</div>
 						<div class="item" style="background-image: url(../img/dynatron.jpg);">
-							<img src="../img/dynatron.jpg" alt="dynatron"/>
+							<img src=<?php echo $util->getSelfRoot().$util::img.$util->getRelativeAddressingChar()."dynatron.jpg"?> alt="dynatron"/>
 						</div>
 						<div class="item" style="background-image: url(../img/fm84.jpg);">
-							<img src="../img/fm84.jpg" alt="FM - 84"/>
+							<img src=<?php echo $util->getSelfRoot().$util::img.$util->getRelativeAddressingChar()."fm84.jpg"?> alt="FM - 84"/>
 						</div>
 					</div>
 					<!-- ovladace -->
@@ -143,44 +124,16 @@
 		   		</div>
 	    	</div>
 	    	<!-- reg. formular -->
-			<div id="modal" class="modal">
-					<div id="pseudo-container" class="pseudo-container">
-						<div id="psdoCntnr" class="modal-cont">
-							<p class="paraInlineModal">Register</p>
-							<span class="clsBtn" id="clsModal" onclick="closeModal()">&times;</span>
-							<form id="regFrm" class="frmStlng">
-								<!-- username -->
-								<label for="uname">Username</label>
-								<input type="text" id="uname" onblur="validateName(this)" onfocus="hideUnameErr()" placeholder="Enter username"/>
-								<label for="uname" class="hide errLbl" id="chybaUname">Error Username has to be filled</label>
-								<!-- email -->
-								<label for="mail">E-mail</label>
-								<input type="email" id="mail" onblur="validateMail(this)" onfocus="hideMailErr()" placeholder="mail@domain.com"/>
-								<label for="mail" id="chybaMail" class="hide errLbl">Error enter: mail@domain.com</label>
-								<!-- password 1 -->
-								<label for="passwd1">Password</label>
-								<input type="password" onblur="validatePasswdChars(this)" onfocus="hidePassw1Err()" id="passwd1"/>
-								<label for="passwd1" id="passwd1Err" class="hide errLbl">Error passwd can use only: a-z, A-Z, 0-9, .,-\/?!][</label>
-								<!-- password 2 -->
-								<label for="passwd2">Repeat password</label>
-								<input type="password" onblur="validatePasswdChars(this); validatePasswdMatch(this)" onfocus="hidePassw2Err()" id="passwd2"/>
-								<label for="passwd2" id="passwd2Err" class="hide errLbl">Error passwd can use only: a-z, A-Z, 0-9, .,-\/?!][</label>
-								<label for="passwd2" id="passwd2ErrMatch" class="hide errLbl">Error passwords must be identical</label>
-								<!-- gender -->
-								<fieldset name="gender">
-									<legend>Pick a Gender</legend>
-									<label for="male">Male</label>
-									<input type="radio" id="male" name="gender"/>
-									
-									<label for="female">Female</label>
-									<input type="radio" id="female" name="gender"/>
-								</fieldset>
-								<input type="submit" class="btn btn-primary" value="Submit" onclick="validateAll()"/>
-								
-							</form>
-						</div>
-					</div>
-				</div>
+            <?php
+                try
+                {
+                    new regfor($util);
+                }
+                catch (Exception $e)
+                {
+                    echo 'Error - register form excpetion: ' . $e;
+                }
+            ?>
 			<!-- end frm -->
 			<hr/>
 			<section>
@@ -199,7 +152,7 @@ Synthwave originates from the mid 2000s. French acts including David Grellier (C
 					 Also, there are a lot of tracks completely essential that you can listen directly, latest releases that you musn’t miss, some fresh mixtapes, some news by categories, awesome artworks but also some exclusive interviews.
 					 Retro Synthwave regularly puts together themed mixtapes. After TIME MACHINE & CYBORG AFTER ALL, we are glad to present NEXUS SAVE THE QUEEN. Our new playlist features handpicked tracks and pays hommage to two iconic 80s movies – Blade Runner (1983) and Aliens (1986). The artists featuring GUNSHIP, The Midnight, HOME, Trevor Something, Jordan F, Le Matos, Electric Youth, Chvrches, Tangerine Dream, Vangelis and many others.
 					After an album released in 2015 and a modeling clay video seen over 2 million times for the track « Tech Noir » (Terminator nightclub) with the voice of the legendary master of horror John Carpenter, finally here is the long-awaited return of the Synthpop pioneers GUNSHIP with Stella Le Page (vocals) and Genuine Human (video). Before the new LP, we have a hypnotic song, an 8-bit video with a lot of references and a contest to win a personalized arcade machine, what else?
-					
+
 
 NRW rec, the record label of the famous NewRetroWave, has recently released a second compilation named Magnatron 2.0. A huge musical phenomenon but also a visual event that we’ve decided to faithfully describe.
 
@@ -308,13 +261,16 @@ Cyberpunk plots often center on conflict among artificial intelligences, hackers
 	    		</div>
 	    	</div>
 		</article>
-		<footer class="footer" id="footer">
-	       	<hr/>
-	       	<p class="centrovanie">Created by 
-	       		<a href="mailto:patrikflorians@gmail.com" class="remove-deco"> Patrik Florians </a>2018
-	       		</p>
-	      	<p class="centrovanie">Powered by <a class="remove-deco" href="getbootstrap.org">bootstrap</a></p>
-	    </footer>
+        <?php
+            try
+            {
+                new GeneralFooter($util);
+            }
+            catch(Exception $e)
+            {
+                echo "error excpetion caught - footer " . $e;
+            }
+         ?>
     	<noscript>
 	    		<p class="centrovanie"> Please <a href="www.enable-javascript.com">enable Javascript</a>, this site will not work without it</p>
 	    </noscript>

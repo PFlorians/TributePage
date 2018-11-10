@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html class="container-fluid" lang="en">
+<html class="container-fluid" lang="en" >
     <head>
     	<!-- meta content -->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -24,92 +24,72 @@
 			<!-- vlastny skompilovany bootstrap -->
 			<link rel="stylesheet" href="../css/bootstrap3.3.7_v2/css/bootstrap.min.css"/>
 			<!-- vlastny JS zo skompilovaneho bootstrapu -->
-			<script src="../css/bootstrap3.3.7_v2/js/bootstrap.min.js"></script> 
-		
+			<script src="../css/bootstrap3.3.7_v2/js/bootstrap.min.js"></script>
+
 			<!-- custom css -->
 	       	<link rel="stylesheet" href="../css/frickles.css"/>
 	       	<link rel="stylesheet" href="../css/heavy.css"/>
 			<link rel="stylesheet" href="../css/modal.css"/>
 			<link rel="stylesheet" href="../css/gallery.css"/>
 		<!-- configuration and misc references -->
-			
+
 			<!-- follow device width, initial zoom level -->
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!-- fonts defined here-->
-	 		<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/hi" type="text/css"/> 
+	 		<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/hi" type="text/css"/>
 	 		<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/press-start-2p" type="text/css"/>
-	        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/beon" type="text/css"/> 
-	        
+	        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/beon" type="text/css"/>
+            <?php
+                spl_autoload_register(//terror itself
+                        function($clName)
+                        {
+                            //echo 'Autoload HTML: ' . $clName.PHP_EOL;
+                            if(strtoupper(substr(PHP_OS, 0, 3)) === "WIN")
+                            {//cesty su v tvare '\'
+                                $path="\\";
+                            }
+                            else
+                            { //something else, lets hope its UNIX based
+                                //opacne lomitko
+                                $path="/";
+                            }//php is constant everywhere
+                            if(file_exists(dirname(__DIR__).$path."php".$path. $clName . ".php"))
+                            {
+                            //    echo 'Exists '.PHP_EOL;
+                                   require_once(dirname(__DIR__).$path."php".$path. $clName .".php");
+                            }
+                            else
+                            {
+                                throw new Exception("Error trying to load file(html): " . $clName . ".php", 1000);
+                            }
+                        }
+                    );
+                    try {
+                        $util=new Util();//this must be global & accessible for every object using dependency injection
+                    } catch (Exception $e) {
+                        echo 'Initial HTML error: ' .$e;
+                    }
+             ?>
        	<!-- rest of head section -->
         <title>Games</title>
     </head>
-    <body id="telo"> 
-    	<header class="page-header" id="headr"> <!-- komplet cely header moze byt dynamicky linkovany -->
-	    		<nav class="navbar navbar-inverse navbar-fixed-top bottom-margin" id="hlavicka">
-	    			<div id="nhead" class="navbar-header"><!-- dolezite koli mechanike 3-bar spuste -->
-	    				<button class="navbar-toggle pull-left aux-navbar-left" onclick="temporaryEraseConditions()" data-toggle="collapse" data-target="#mainNav" id="bars">
-		    				<span class="icon-bar"></span>
-		    				<span class="icon-bar"></span>
-		    				<span class="icon-bar"></span>
-	    				</button>
-	    				<!--<section class="vertical-separator-right">-->
-	    				<a class="navbar-left" > 
-	    					<object type="image/svg+xml" data="../img/floppy.svg" id="logo">
-	    						Objects not supported in your browser	
-	    					</object>
-	    				</a>
-	    				<!--</section>-->
-	    			</div>
-	    			<div class="collapse navbar-collapse " id="mainNav">
-		    			<ul class="nav navbar-nav arcade-font"> 
-		    				<li class="vertical-separator-left"><a href="../index.html">Home</a></li>	
-		    				<li ><a href="about.html">About</a></li>
-		    				<li ><a href="software.html">Software</a></li>
-		    				<!-- <li ><a href="#">Music</a></li> -->
-		    				<li class="dropdown">
-		    					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-		    						Miscellanous
-		    						<span class="caret">
-		    						</span>
-		    					</a>
-		    						<ul class="dropdown-menu"><!-- to be done -->
-					    				<li><span><img id="refe" src="../img/references.png" alt="references"/><a href="#">90's websites</a></span></li>
-					    				<li><span><img id="ninety" src="../img/90s.png" alt="nineties"/><a href="music-gal.html">Music</a></span></li>
-					    				<li><span><img id="gms" src="../img/cd.png" alt="games"/><a href="games-gal.html">Games</a></span></li>
-					    			</ul>
-		    					<!--</a>-->
-		    				</li>
-		    			</ul>
-		    			<ul class="nav navbar-nav navbar-right arcade-font"><!-- neskor s tym bude interagovat JS -->
-		    				<!-- could this be a popover? -->
-		    				<li><a href="#" id="login" class="beon vertical-separator-right" data-container="body" data-toggle="popover" title="Enter Credentials" 
-		    					data-placement="bottom" >
-		    						Log In <span class="glyphicon glyphicon-log-in"></span></a>
-		    				</li>
-		    				<li><a onclick="initModal()" id="register" href="#"  class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
-		    			</ul>
-		    			<div id="login-form" class="hide">
-			    			<form class="navbar-form navbar-left">
-			    				<div class="form-group">
-				    				<input type="text" class="form-control" maxlength ="4" placeholder="username"/>
-				    				<input type="password" class="form-control" maxlength="4" placeholder="password"/><br/>
-				    				<button type="submit" class="btn btn-primary">Submit</button>
-			    				</div>
-			    			</form>
-		    			</div>
-	    			</div>
-	    			<div class="progress thin-progressbar" id="progress"><!-- need to overload in .css file -->
-	    				<span class="progress-bar pb-details" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" role="progressbar">
-	    				</span>
-	    			</div>
-	    		</nav>
-	    	</header>
+    <body id="telo">
+        <?php
+            try
+            {
+                new GeneralHeader($util);
+            }
+            catch (Exception $e)
+            {
+                echo 'Error loading header - prince: ' . $e;
+            }
+         ?>
 	    <article class="container-fluid">
 	    	<h3 class="arcade-font-prince centrovanie">Retro Games</h3>
-	    	<div class="row"> 
+	    	<div class="row">
 	    		<!-- SW carus -->
 	    		<!-- carousel -->
-		   		<div id="carusGames" class="carousel slide col-lg-12 col-md-12 col-sm-12 col-xs-12 fade-out" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000> 
+		   		<div id="carusGames" class="carousel slide col-lg-12 col-md-12 col-sm-12 col-xs-12 fade-out" data-ride="carousel" data-pause="hover" data-keyboard="true" data-interval=10000>
 					<!-- indikatory -->
 					<ol class="carousel-indicators">
 						<li data-target="#carusGames" data-slide-to="0" class="active"></li>
@@ -120,28 +100,28 @@
 					<!-- data items -->
 					<div class="carousel-inner" role="listbox" id="imgsCar">
 						<div class="item active" style="background-image: url(../img/ptimce0.PNG);">
-							<img src="../img/ptimce0.PNG" alt="Prince of persia"/>
+							<img src=<?php echo $util->getSelfRoot().$util::img.$util->getRelativeAddressingChar()."ptimce0.PNG"?> alt="Prince of persia"/>
 							<div class="carousel-caption">
 								<h3 class="hilight">Prince of persia - </h3>
 								<p class="hilight">Well known DOS game</p>
 							</div>
 						</div>
 						<div class="item" style="background-image: url(../img/zork.PNG);">
-							<img src="../img/zork.PNG" alt="zork"/>
+							<img src=<?php echo $util->getSelfRoot().$util::img.$util->getRelativeAddressingChar()."zork.PNG"?> alt="zork"/>
 							<div class="carousel-caption">
 								<h3 class="hilight">Zork 1981 - </h3>
 								<p class="hilight"> One of the first games</p>
 							</div>
 						</div>
 						<div class="item" style="background-image: url(../img/chess.PNG);">
-							<img src="../img/chess.PNG" alt="battle chess"/>
+							<img src=<?php echo $util->getSelfRoot().$util::img.$util->getRelativeAddressingChar()."chess.PNG"?> alt="battle chess"/>
 							<div class="carousel-caption">
 								<h3 class="hilight">Battle Chess - </h3>
 								<p class="hilight">Classic chess game</p>
 							</div>
 						</div>
 						<div class="item" style="background-image: url(../img/startrek.PNG);">
-							<img src="../img/startrek.PNG" alt="Star trek"/>
+							<img src=<?php echo $util->getSelfRoot().$util::img.$util->getRelativeAddressingChar()."startrek.PNG"?> alt="Star trek"/>
 							<div class="carousel-caption">
 								<h3 class="hilight">Star trek - </h3>
 								<p class="hilight">Based on popular tv show</p>
@@ -160,44 +140,16 @@
 		   		</div>
 	    	</div>
 	    	<!-- reg. formular -->
-			<div id="modal" class="modal">
-					<div id="pseudo-container" class="pseudo-container">
-						<div id="psdoCntnr" class="modal-cont">
-							<p class="paraInlineModal">Register</p>
-							<span class="clsBtn" id="clsModal" onclick="closeModal()">&times;</span>
-							<form id="regFrm" class="frmStlng">
-								<!-- username -->
-								<label for="uname">Username</label>
-								<input type="text" id="uname" onblur="validateName(this)" onfocus="hideUnameErr()" placeholder="Enter username"/>
-								<label for="uname" class="hide errLbl" id="chybaUname">Error Username has to be filled</label>
-								<!-- email -->
-								<label for="mail">E-mail</label>
-								<input type="email" id="mail" onblur="validateMail(this)" onfocus="hideMailErr()" placeholder="mail@domain.com"/>
-								<label for="mail" id="chybaMail" class="hide errLbl">Error enter: mail@domain.com</label>
-								<!-- password 1 -->
-								<label for="passwd1">Password</label>
-								<input type="password" onblur="validatePasswdChars(this)" onfocus="hidePassw1Err()" id="passwd1"/>
-								<label for="passwd1" id="passwd1Err" class="hide errLbl">Error passwd can use only: a-z, A-Z, 0-9, .,-\/?!][</label>
-								<!-- password 2 -->
-								<label for="passwd2">Repeat password</label>
-								<input type="password" onblur="validatePasswdChars(this); validatePasswdMatch(this)" onfocus="hidePassw2Err()" id="passwd2"/>
-								<label for="passwd2" id="passwd2Err" class="hide errLbl">Error passwd can use only: a-z, A-Z, 0-9, .,-\/?!][</label>
-								<label for="passwd2" id="passwd2ErrMatch" class="hide errLbl">Error passwords must be identical</label>
-								<!-- gender -->
-								<fieldset name="gender">
-									<legend>Pick a Gender</legend>
-									<label for="male">Male</label>
-									<input type="radio" id="male" name="gender"/>
-									
-									<label for="female">Female</label>
-									<input type="radio" id="female" name="gender"/>
-								</fieldset>
-								<input type="submit" class="btn btn-primary" value="Submit" onclick="validateAll()"/>
-								
-							</form>
-						</div>
-					</div>
-				</div>
+            <?php
+                try
+                {
+                    new regfor($util);
+                }
+                catch (Exception $e)
+                {
+                    echo 'Error - register form excpetion: ' . $e;
+                }
+            ?>
 			<!-- end frm -->
 			<hr/>
 			<h2 class="arcade-font-prince centrovanie">Gallery</h2>
@@ -236,7 +188,7 @@
 	    		<!-- teraz ide kvazi kontajner na obrazky v rezime modal -->
 	    		<div id="galleryContent" class="gallery-modal-container">
 	    			<!-- vsetko defaultne neviditelne, dom upravi current IMG -->
-	    			<div class="slajd">	
+	    			<div class="slajd">
 	    				<img class="img-gal" src="../img/games-gal/hotline1.PNG" alt="hotline1"/>
 	    			</div>
 	    			<div class="slajd">
@@ -265,13 +217,16 @@
 	    		</div>
 	    	</div>
 		</article>
-		<footer class="footer" id="footer">
-	       	<hr/>
-	       	<p class="centrovanie">Created by 
-	       		<a href="mailto:patrikflorians@gmail.com" class="remove-deco"> Patrik Florians </a>2018
-	       		</p>
-	      	<p class="centrovanie">Powered by <a class="remove-deco" href="getbootstrap.org">bootstrap</a></p>
-	    </footer>
+        <?php
+            try
+            {
+                new GeneralFooter($util);
+            }
+            catch(Exception $e)
+            {
+                echo "error excpetion caught - footer " . $e;
+            }
+         ?>
     	<noscript>
 	    		<p class="centrovanie"> Please <a href="www.enable-javascript.com">enable Javascript</a>, this site will not work without it</p>
 	    </noscript>
