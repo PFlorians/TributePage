@@ -23,3 +23,7 @@ function logout(path, user, pwd)//used in header if session was set
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send("data=", JSON.stringify(jsondata));//odoslat data vo formate JSONu
 }
+function retrieveSession()//retrieve session here
+{
+    console.log("session retrieved: ")
+}

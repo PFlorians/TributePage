@@ -27,6 +27,9 @@
             //https://stackoverflow.com/questions/11526643/session-lost-window-location-href
             echo '<script type="text/javascript">
                     console.log("user logged in - vars: '.$_SESSION["username"].'");
+                    window.onbeforeunload=function(){
+                      localStorage.setItem("session", JSON.stringify({username: "'.$_SESSION["username"].'", password: "'.$_SESSION["password"].'" }));
+                    };
                     window.location.href = "http\://'.$_SERVER['SERVER_NAME'].$ut->getRelativeAddressingChar().$ut->getPageRoot().'";
                     </script>';
         }
