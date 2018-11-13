@@ -16,24 +16,24 @@
     );
     if($_SERVER["REQUEST_METHOD"]=="POST")
     {
-        $user=testData($_POST["usrName"]);
-        $mail=testData($_POST["usrMail"]);
-        $pw=testData($_POST["usrPasswd"]);
-        $gender=testData($_POST["gender"]);
+        $user=testData($_POST["uname"]);
+        $pw=testData($_POST["pwd"]);
         $con=new DBconnect("root", "", "tribute_page");
-        $res=$con->mysqlConnect($user, $mail, password_hash($pw, PASSWORD_DEFAULT), $gender);
+        $res=$con->login($user, $pw);
         $ut=new Util();
-        if($res==false)//tzn user uz existuje
+        if(isset($_SESSION["username"]))
         {
-            echo '<script>alert("user already exists");</script>';
+            //strata sessny
+            //https://stackoverflow.com/questions/11526643/session-lost-window-location-href
             echo '<script type="text/javascript">
+                    console.log("user logged in - vars: '.$_SESSION["username"].'");
                     window.location.href = "http\://'.$_SERVER['SERVER_NAME'].$ut->getRelativeAddressingChar().$ut->getPageRoot().'";
                     </script>';
         }
         else //simply redirect to main
         {
-            echo '<script>alert("user registered successfully");</script>';
             echo '<script type="text/javascript">
+                    console.log("login failed res: '.$res.' con: '. $con.'");
                     window.location.href = "http\://'.$_SERVER['SERVER_NAME'].$ut->getRelativeAddressingChar().$ut->getPageRoot().'";
                     </script>';
         }
@@ -45,4 +45,5 @@
         $data=htmlspecialchars($data);
         return $data;
     }
+
  ?>

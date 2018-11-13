@@ -14,7 +14,7 @@ $(document).ready(
     	//console.log("strank: " + pg.split(".")[0] + " loca: " + meno);
     	var n=String(pg.split(".")[0]);
     	x=document.getElementsByTagName("div");
-    	for(var i in x)
+    	for(var i in x)//toto ma odstranit tu otravnu reklamu na serveri
     	{
     		if(typeof x[i].style != "undefined")
     		{
@@ -228,7 +228,7 @@ function serverVariant()//if on server only
 	    	$("body").trigger("load");//volaj event, niekdey sa nespusti
 	    }
 }
-function widget()
+function widget()//vec frontendu, implementuje sa ako separatny komponent
 {
 	//experimentalny widget
     	/*$("#cons").css("height", ($(window).height()/100)*20);

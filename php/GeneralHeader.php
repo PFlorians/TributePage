@@ -72,20 +72,15 @@
     				    			</ul>
     				    		</li>
     				    	</ul>
-    				    	<ul class="nav navbar-nav navbar-right arcade-font"><!-- neskor s tym bude interagovat JS -->
-    				    		<!-- could this be a popover? -->
-    				    		<li><a href="#" id="login" class="beon vertical-separator-right" data-container="body" data-toggle="popover" title="Enter Credentials"
-    				    			data-placement="bottom" onclick="setPopoverFlag()">
-    				    				Log In <span class="glyphicon glyphicon-log-in"></span></a>
-    				    		</li>
-    				    		<li><a onclick="initModal();navbarCorrection()" id="register" href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>
+    				    	<ul class="nav navbar-nav navbar-right arcade-font">
+    				    		<!-- popovers -->'.$this->detectSession().'
     				    	</ul>
     				    	<div id="login-form" class="hide">
-    					    	<form class="navbar-form navbar-left">
+    					    	<form class="navbar-form navbar-left" method="post" action="'.$this->util->getSelfRoot().$this->util::php.$this->util->getRelativeAddressingChar().'login.php">
     					    		<div class="form-group">
-    									<input type="text" class="form-control" maxlength ="4" placeholder="username"/>
-    									<input type="password" class="form-control" maxlength="4" placeholder="password"/><br/>
-    									<button type="submit" class="btn btn-primary">Submit</button>
+    									<input type="text" class="form-control" maxlength ="4" name="uname" placeholder="username"/>
+    									<input type="password" class="form-control" maxlength="4" name="pwd" placeholder="password"/><br/>
+    									<input type="submit" class="btn btn-primary"/>
     					    		</div>
     					    	</form>
     				    	</div>
@@ -98,7 +93,28 @@
     			</header>
             ';
         }
+        private function detectSession()//decides the content
+        {
+            echo '<script>console.log("caught session: '.session_status().'");</script>';
+            if(isset($_SESSION["username"]))//user logged in so serve appropriate content
+            {
+                return '<li><a href="#" id="profile" class="beon vertical-separator-right"
+                        >'.$_SESSION["username"].'<span class="glyphicon glyphicon-user"></span></a>
+                        </li>
+                        <li><a id="logout" href="#"
+                        onclick="logout(\''.$this->util->getSelfRoot().'logout.php\', \''.$_SESSION["username"].'\', \''.$_SESSION["password"].'\')"
+                         clas="beon-neon">Logout <span class="glyphicon glyphicon-log-out"></span></a>
+                        </li>';
+            }
+            else//casual stuff
+            {
+                return '<li><a href="#" id="login" class="beon vertical-separator-right" data-container="body" data-toggle="popover" title="Enter Credentials"
+                    data-placement="bottom" onclick="setPopoverFlag()">
+                        Log In <span class="glyphicon glyphicon-log-in"></span></a>
+                </li>
+                <li><a onclick="initModal();navbarCorrection()" id="register" href="#" class="beon-neon">Register <span class="glyphicon glyphicon-user"></span> </a></li>';
+            }
+        }
     }
-
 
  ?>

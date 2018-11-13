@@ -25,6 +25,7 @@
         private $selfRoot;//root dir of entire website
         private $selfDir;//relative dire of self
         private $scriptName;//scripts name
+        private $pageRoot;//folder where the index is
         //nemenne, s ktorymi sa v adresarovej strukture na web serveri pocita
         public const img='img';//images are all here
         public const html='html';//most content is here
@@ -89,11 +90,16 @@
             $this->selfDir=$arr[sizeof($arr)-2];
             $this->scriptName=$arr[sizeof($arr)-1];
             $this->selfRoot="/";
+            $this->pageRoot="";
             for($i=0;$i<sizeof($arr)-2;$i++)
             {
                 if($i>0)
                 {
                     $this->selfRoot=$this->selfRoot.$arr[$i]."/";
+                    if($i==1)
+                    {
+                        $this->pageRoot=$this->pageRoot.$arr[$i]."/";
+                    }
                 }
             }
 
@@ -139,6 +145,10 @@
         public function getSelfScriptName()
         {
             return $this->scriptName;
+        }
+        public function getPageRoot()
+        {
+            return $this->pageRoot;
         }
     }
 

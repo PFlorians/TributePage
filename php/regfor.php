@@ -2,10 +2,10 @@
 spl_autoload_register(
     function($clName)
     {
-        echo '####regfor autload: ' .$clName .PHP_EOL;
+        //echo '####regfor autload: ' .$clName .PHP_EOL;
         if(file_exists($clName . ".php"))
         {
-            echo 'Existuje: ' .PHP_EOL;
+        //    echo 'Existuje: ' .PHP_EOL;
                require_once($clName .".php");
         }
         else
