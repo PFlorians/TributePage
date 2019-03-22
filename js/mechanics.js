@@ -14,6 +14,8 @@ $(document).ready(
     	//console.log("strank: " + pg.split(".")[0] + " loca: " + meno);
     	var n=String(pg.split(".")[0]);
     	x=document.getElementsByTagName("div");
+		//local storage vars go here
+		
     	for(var i in x)//toto ma odstranit tu otravnu reklamu na serveri
     	{
     		if(typeof x[i].style != "undefined")
