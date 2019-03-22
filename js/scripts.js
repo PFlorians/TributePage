@@ -3,137 +3,108 @@
  */
 //current carousel index - index at which carousel starts
 var cur=0;
-function tstReq()
+var clickFlag=false;//ci som klikol na rolovacie menu
+var popoverClicked=false;//ci je kliknute na popover
+var car;//instancia carouselu predana z inicializacnej funkcie
+
+//logika progress baru
+function tst()
 {
-	console.log("activated");
-	var connector = new XMLHttpRequest();
-	connector.onreadystatechange=responseListener(connector);
-	
-	connector.open("GET", "http://www.aktuality.sk/index.html");
-	connector.send();
-	
-	document.getElementById("garbage").textContent=connector.responseText;
+	console.log("yes");
+	progressBarMeasurement();
 }
-function responseListener(con)
+function progressBarMeasurement()//pre progress bar
 {
-	console.log("response " + con);
-	if(con.readyState == 4 && con.status==200)
+	let viewableW=window.innerWidth;//viditelne okno
+	let viewableH=window.innerHeight;
+	let pb=document.getElementById("progress").children[0];
+	let scrl=getScrollSize();
+	console.log("scrollSiz: " + scrl + " dockel " + document.documentElement.scrollTop);
+	pb.setAttribute("aria-valuenow", (((document.documentElement.scrollTop + viewableH)/scrl)*100));
+	pb.style.width=(((document.documentElement.scrollTop + viewableH)/scrl)*100) + "%";
+}
+
+function navbarOverflowCheck()//niekde moze vypaltit na tucny kus headra
+{
+	//console.log("overflow: " + $("#hlavicka").height() + " w: " + $("#hlavicka").width());
+	//console.log("overflow2: " + $("#nhead").height() + " w: " + $("#nhead").width());
+	if(($("#hlavicka").width() <= 768 && $("#hlavicka").height()>68)
+		|| ($("#nhead").width() <= 768 && $("#nhead").height()>68))
 	{
-		console.log("response detected");
-		console.log(con.responseText);
+		return 1;
 	}
 	else
 	{
-		console.log("buggy info :");
-		console.log(con.status);
-		console.log(con.readyState);
-	}
-}
-//logika progress baru
-function progressBarMeasurement()
-{
-	
-}
-//util window event dispatcher generic
-function eventDispatcher(obj)
-{
-	if(Object.is(window, obj))
-	{
-		obj.dispatchEvent(new Event("resize"));		
+		return 0;
 	}
 }
 //specialne pravidla nerobit cez @media
 function adjustPadding()
 {
+	//console.log("debug: " + $("#mainNav").height() + " " + $("#mainNav").width());
+	//console.log("window debug: " + window.innerHeight + " " + window.innerWidth);
 	if(window.innerWidth <=200)
     {
+    	//console.log("the special case " + $("#mainNav").height());
     	$("body").css("padding-top", 24);
+    	heurSpLo();
     }
-    else if(window.innerWidth >=768 || (window.innerWidth <= 768 && window.innerHeight >200))
+    else //if(window.innerWidth >=768 || (window.innerWidth <= 768 && window.innerHeight >200))//stara verzia
     {
-    	if($("#mainNav").height() <= 50)
-     	{
-     		$("body").css("padding-top", 23);//11, korekcia o 12px
-     	}
-     	else if($("#mainNav").height() <= 100 && $("#mainNav").height() >= 50)
-     	{
-     		$("body").css("padding-top", 73);	
-     	}
-     	else if($("#mainNav").height()>100)
-     	{
-     		$("body").css("padding-top", 110);
-     	}
-     	else
-     	{
-     		console.log("the special case");
-     		$("body").css("padding-top", 27);
-     	}
+    	if(navbarOverflowCheck() == 1)
+    	{
+    		$("#hlavicka").css("max-height", 68);
+    		$("#nhead").css("max-height", 60);
+    		if(window.innerWidth<=1195)//len custom bootstrap
+		    {
+		    	$("body").css("padding-top", 70);
+		    	heurSpLo();
+		    }
+		    else
+		    {
+		    	$("body").css("padding-top", 80);
+		    	heurLo();
+		    }
+    	}
+    	else
+    	{
+    		//console.log("zvacseny");
+    		$("#hlavicka").css("max-height", '');
+    		$("#nhead").css("max-height", '');
+    		if(window.innerWidth<=1195)//len custom bootstrap
+		    {
+		    	$("body").css("padding-top", 70);
+		    	heurSpLo();
+		    }
+		    else
+		    {
+		    	$("body").css("padding-top", 80);
+		    	heurLo();
+		    }
+	    }
+
 	}
+
 }
-function logoHeuristics()//nech sirka je 11% sirky stranky, nech vyska je 80% 
+function temporaryEraseConditions()
 {
-	$("#logo").css("height", 0);
-	$("#logo").css("width", 0);
-	var w=($("#mainNav").width()/100)*11;
-	var h=($("#mainNav").height()/100)*80;
-	//console.log("vypocital som: " + w + " h: " + h);
-	$("#logo").css("height", h);
-	$("#logo").css("width", w);
+	//console.log("click: " + clickFlag);
+	if(clickFlag==false)
+	{
+		clickFlag=true;
+		$("#hlavicka").css("max-height", '');
+    	$("#nhead").css("max-height", '');
+    	heurSpLo();
+    }
+    else
+    {
+    	clickFlag=false;
+    	$("#hlavicka").css("max-height", 68);
+    	$("#nhead").css("max-height", 60);
+    	heurSpLo();
+    }
 }
-//define style
-function styleDecisionCascade(sirka, vyska)
-{
-	var styl = null;
-	console.log("vysk sirk: " + vyska + " " + sirka);
-	if(sirka>=768)
-	{
-		styl=document.createElement("style");
-		styl.setAttribute("id", "styleCarusResp");
-		styl.innerHTML =  " .carousel { width: " + sirka + "px; height: " + vyska + "px;}" +
-						" .carousel-inner {height: 100%;}" + 
-						".item {background-size: cover; background-position: 50% 50%; " +
-					      " width: 100%; height: 100%;}" +
-						".item img { visibility: hidden;}";		
-	}
-	else
-	{
-		styl=document.createElement("style");
-		styl.setAttribute("id", "styleCarusResp");
-		styl.innerHTML =  " .carousel { width: 100%; height: 100%;}" +
-						" .carousel-inner {height: 100%;}" + 
-						".item {background-size: cover; background-position: 50% 50%; " +
-					      " width: 100%; height: 100%;}" +
-						".item img { visibility: hidden;}";
-	}
-	return styl;
-}
-//service routine for responsive carousel
-function carusResponsive()
-{
-	var w = (window.innerWidth/100)*60;
-	var h = (window.innerHeight/100)*50;
-	var stylehseet = null;
-	if(document.getElementById("styleCarusResp") == null)
-	{
-		stylesheet = styleDecisionCascade(w, h);
-		document.body.appendChild(stylesheet);
-	}
-	else
-	{
-		stylesheet = document.getElementById("styleCarusResp");
-		stylesheet.parentNode.removeChild(stylesheet);
-		stylesheet = styleDecisionCascade(w, h);
-		document.body.appendChild(stylesheet);
-	}
-	console.log("styl: " + stylesheet.getAttribute("id"));
-}
-function removeChildren(elem)
-{
-	while(elem.firstChild)
-	{
-		elem.removeChild(elem.firstChild);
-	}
-}
+
 function briefContent(ind)//nahadzuje content podla indexu carouselu
 {
 	var tab=null;//table references
@@ -142,7 +113,7 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 	var j=0; //column of data
 	var k; //tmp cycle variable
 	var tmpElem = null;//tmp buffer
-	
+
 	tab=document.getElementById("infoBody");
 	removeChildren(tab);
 	if(ind==0)
@@ -156,55 +127,55 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Prince of Persia";	
+		tmpElem.innerHTML="Prince of Persia";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr")); //row 2 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Year";	
+		tmpElem.innerHTML="Year";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="1989";	
+		tmpElem.innerHTML="1989";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 3 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Platform";	
+		tmpElem.innerHTML="Platform";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="MS-DOS";	
+		tmpElem.innerHTML="MS-DOS";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 4 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Created";	
+		tmpElem.innerHTML="Created";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Jordan Mechner";	
+		tmpElem.innerHTML="Jordan Mechner";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		j=0;
 		elems.push(document.createElement("tr"));//row 5 of table
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Genre";	
+		tmpElem.innerHTML="Genre";
 		elems[elems.length-1].appendChild(tmpElem);
 		j++;
 		tmpElem=document.createElement("td");
 		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
-		tmpElem.innerHTML="Action, Platform";	
+		tmpElem.innerHTML="Action, Platform";
 		elems[elems.length-1].appendChild(tmpElem);
 		i++;
 		for(k=0;k<elems.length;k++)
@@ -212,46 +183,328 @@ function briefContent(ind)//nahadzuje content podla indexu carouselu
 			tab.appendChild(elems[k]);
 		}
 	}
+	else if(ind==1)
+	{
+		elems.push(document.createElement("tr")); // line 1 of table
+		elems[elems.length-1].setAttribute("id", "riadok"+i);
+		tmpElem = document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Name";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Amiga OS";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr")); //row 2 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Year released";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="1985";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr"));//row 3 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Kernel";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Microkernel";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr"));//row 4 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Developer";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Commodore International";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr"));//row 5 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Written in";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Assembly, BCPL, C";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		/*j=0;
+		elems.push(document.createElement("tr"));//row 6 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Source model";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Closed";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;*/
+		for(k=0;k<elems.length;k++)
+		{
+			tab.appendChild(elems[k]);
+		}
+	}
+	else if(ind==2)
+	{
+		elems.push(document.createElement("tr")); // line 1 of table
+		elems[elems.length-1].setAttribute("id", "riadok"+i);
+		tmpElem = document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Name";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Turbo Debugger";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr")); //row 2 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Year released";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="1989";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr"));//row 3 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Platform";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="MS-DOS";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr"));//row 4 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Developer";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Borland";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr"));//row 5 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Designed for";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Turbo Assembler";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		for(k=0;k<elems.length;k++)
+		{
+			tab.appendChild(elems[k]);
+		}
+	}
+	else if(ind == 3)
+	{
+		elems.push(document.createElement("tr")); // line 1 of table
+		elems[elems.length-1].setAttribute("id", "riadok"+i);
+		tmpElem = document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Name";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Windows 3.0";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr")); //row 2 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Year released";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="1990";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr"));//row 3 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Developer";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Microsoft";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr"));//row 4 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="License";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Commercial";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		j=0;
+		elems.push(document.createElement("tr"));//row 5 of table
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="Build upon";
+		elems[elems.length-1].appendChild(tmpElem);
+		j++;
+		tmpElem=document.createElement("td");
+		tmpElem.setAttribute("id", "dataRiadok"+i+""+j);
+		tmpElem.innerHTML="MS-DOS 6.1 >";
+		elems[elems.length-1].appendChild(tmpElem);
+		i++;
+		for(k=0;k<elems.length;k++)
+		{
+			tab.appendChild(elems[k]);
+		}
+	}
+
 }
 //event on carousel slide
-function carusSlide()
+function carusSlide()//vracia index carouselu
 {
 	var cur=0;
-	briefContent(cur);//on initial call 
+	briefContent(cur);//on initial call
 	$(".carousel").on("slid.bs.carousel", function (){
 			cur=$("div.active").index();
 			briefContent(cur);
-			console.log("index: " + cur );
+			//console.log("index: " + cur );
 		});
 }
-function init()
+function basicIntel()//cisto debugovacia funkcia
 {
-	//init onload sequence
-	logoHeuristics();
-	//carusResponsive();
-	carusSlide();
-	adjustPadding();
-	eventDispatcher(window);
-    window.addEventListener('resize', function f()
-    {
-    	adjustPadding();
-    	//carusResponsive();
-    	//logoHeuristics();
-    	//console.log("status " + window.innerWidth + " " + $("#mainNav").height());
-    	//console.log("padding " + $("#progress").position().top);
-    });
+	console.log($(window.top).height());
+	console.log(window.innerHeight);
+	console.log($(window).height());
+	console.log("velkost dokumetnu");
+	console.log("1 " +document.body.scrollHeight);
+	console.log("2 " +document.body.offsetHeight);
+	console.log("3 " +document.documentElement.clientHeight);
+	console.log("4 " +document.documentElement.scrollHeight);
+	console.log("5 " +document.documentElement.offsetHeight);
+	console.log("info o navbare");
+	console.log("hlavicka: " + $("#hlavicka").height() + " sirka: " + $("#hlavicka").width());
+	console.log("nhead div: " + $("#nhead").height() + " " + $("#nhead").width());
+	console.log("mainNav: " + $("#mainNav").height());
+	console.log("mainNav w: " + $("#mainNav").width());
 }
-function initArticles()
+function heurLo()//heuristika podla kontajnera hlavicka
 {
-	//init onload sequence
-	logoHeuristics();
+	$("#logo").css("height", 0);
+	$("#logo").css("width", 0);
+	$("#layer1").css("height", 0);
+	$("#layer1").css("width", 0);
+	$("#layer2").css("height", 0);
+	$("#layer2").css("width", 0);
+	var w=($("#hlavicka").width()/100)*11;
+	var h=($("#hlavicka").height()/100)*80;
+	//console.log("vypocital som: " + w + " h: " + h);
+	$("#layer1").css("height", h);
+	$("#layer1").css("width", w);
+	$("#layer2").css("height", h);
+	$("#layer2").css("width", w);
+	$("#logo").css("height", h);
+	$("#logo").css("width", w);
+}
+function heurSpLo()//specialny pripad, nhead kontajner
+{
+	$("#logo").css("height", 0);
+	$("#logo").css("width", 0);
+	$("#layer1").css("height", 0);
+	$("#layer1").css("width", 0);
+	$("#layer2").css("height", 0);
+	$("#layer2").css("width", 0);
+	var w=($("#nhead").width()/100)*70;
+	var h=($("#nhead").height()/100)*90;
+	//console.log("vypocital som: " + w + " h: " + h);
+	$("#layer1").css("height", h);
+	$("#layer1").css("width", w);
+	$("#layer2").css("height", h);
+	$("#layer2").css("width", w);
+	$("#logo").css("height", h);
+	$("#logo").css("width", w);
+}
+function setPopoverFlag()
+{
+	if(!popoverClicked)
+	{
+		popoverClicked=true;
+	}
+	else
+	{
+		popoverClicked=false;
+	}
+}
+function navbarCorrection()
+{
+	if((window.innerWidth <= 1195) && (clickFlag==true))
+	{
+		if(popoverClicked)
+		{
+			console.log("deactivating");
+			$("#login").click();
+		}
+		$("#bars").trigger('click');
+	}
+}
+function resEvH()
+{
+	//console.log("handler called");
 	adjustPadding();
-	eventDispatcher(window);
-    window.addEventListener('resize', function f()
-    {
-    	adjustPadding();
-    	//logoHeuristics();
-    	//console.log("status " + window.innerWidth + " " + $("#mainNav").height());
-    	//console.log("padding " + $("#progress").position().top);
-    });
+	car.carusResponsive();
+	progressBarMeasurement();
+	if(document.getElementById("gallery")!=null)//ak existuje galeria
+	{
+		respInitializer();
+	}
+	setTimeout(() => {adjustPadding(); car.carusResponsive()}, 200);//pretoze firefox aj chrom neustale spustaju event resize
+}
+function registerHandlers(carouselObj)
+{
+	car=carouselObj;
+	//console.log("handlery inicializovane")
+	window.addEventListener('resize', resEvH);
+	window.addEventListener('scroll', () =>
+	{
+	   	progressBarMeasurement();
+	   	navbarCorrection();
+	});
 }

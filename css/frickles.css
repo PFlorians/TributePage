@@ -1,3 +1,4 @@
+/*dekorativne separatory*/
 .vertical-separator-right
 {
 	border-right-width: 1px;
@@ -10,6 +11,7 @@
 	border-left-style: solid;
 	border-left-color: #EF00D8;
 }
+/*box model helpers*/
 .aux-navbar-left
 {
 	float: left;
@@ -19,6 +21,7 @@
 {
 	margin-bottom: 3px !important;
 }
+/*progressbar*/
 .thin-progressbar
 {
 	height: 3px !important;
@@ -36,32 +39,89 @@
 {
 	width: 60%;
 }
+/*navbar styling*/
 .navbar-brand
 {
 	font-family: 'HiRegular';
 	color: #16EF00 !important;
 	/*pretazi povodnu definiciu -> opatrne!*/
 }
+/*fonty*/
 .neon-retro-font
 {
 	font-family: 'HiRegular';
 	color: #2bef00 !important;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
 }
 .arcade-font
 {
 	font-family: 'PressStart2PRegular';
 	color: #f7a009 !important;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
+}
+.arcade-font-prince
+{
+	font-family: 'PressStart2PRegular';
+	color: /*#ffebaa*/#e3a200 !important;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
 }
 .beon
 {
 	font-family: 'BeonRegular'; 
 	color: #ff00c7 !important;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
+}
+h3.beon.centrovanie /* formatovanie pre nadpisy */
+{
+	font-size: 40pt !important;
+	margin-bottom: 30px !important;
+}
+h3.arcade-font-prince.centrovanie /* formatovanie pre nadpisy */
+{
+	font-size: 30pt !important;
+	padding: 0px !important;
+	margin-bottom: 40px !important;
 }
 .beon-neon
 {
 	font-family: 'BeonRegular'; 
 	color: #2bef00 !important;
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
 }
+h4.beon-neon/*nadpisy 4 urovne*/
+{
+	font-size: 20pt;
+}
+p.lemovanie
+{
+	text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000 !important;
+}
+/*koniec fontovy tried*/
+/*tajny widget*/
 .console
 {
 	position: fixed;
@@ -83,45 +143,87 @@
 }
 .page-header
 {
-	margin: 15px !important;
+	margin: 0px !important;
+	border-bottom: 0px !important;
 }
 .left-padding h3
 {
-	padding-left: 50px;
+	padding-left: 80px;
 }
 .left-padding h4
 {
-	float: center;
+	text-align: center; /*lepsie nechat to rovno v strede*/
 }
+/*general utillitary classes*/
 .remove-deco a
 {
 	text-decoration: none;	
 }
+.centrovanie
+{
+	position: relative;
+	text-align: center;
+}
+/*pretazenie vlastnosti tabuliek*/
+table
+{
+	background-color: #f2a9e0 !important;
+	color: black;
+}
+.table-striped > tbody > tr:nth-of-type(2n+1)
+{
+	background-color: #a4d5f5 !important;
+}
+.popover-title
+{
+	color: black !important;
+}
+/*paticka*/
+footer > p
+{
+	font-size: 12pt !important;
+}
 /*
-@media (max-width: 766px) 
+ *obrazky pre rolovaci zoznam 
+ */
+ul.dropdown-menu > li > span > img
 {
-	body
-	{
-		padding-top: 20px;
-	}
+	max-height: 20px;
+	max-width: 20px;
+	margin-right: 5px;
+	margin-left: 5px;
+	/*background-image: url("../img/references.png");*/
 }
-@media (min-width: 766px) 
+/*drobne dekoracie a upravy*/
+li.localHeader p:first-of-type
 {
-	body
-	{
-		padding-top: 20px;
-	}
+	font-weight: bold;
 }
-@media (max-width: 200px) 
+.vlavo
 {
-	body
-	{
-		padding-top: 65px;
-	}
+	float: left;
+	color: rgb(242, 169, 224);
+	margin-right: 15px;
 }
-*/
-/*.separation table
+ul.vlavo > li > p
 {
-	margin: 40px;
+	display: inline;
+	background-color: rgba(0,0,0,.15);
 }
-*/
+/*
+ * pozadie za elementom - ak treba zvyraznit text
+ */
+.hilight
+{
+	display: inline;
+	text-shadow: 0px 0px 6px #000; 
+	background-color: rgba(0,0,0,.2);/*toto pozadie je hnusne*/
+	padding: 0px;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+.carousel img
+{
+	/*min-width: 100%;
+	max-width: none;*/
+}
